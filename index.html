@@ -121,6 +121,7 @@ $("stageLabel").textContent=index<3?"المرحلة الأولى: نتعرّف �
  });
 } 
  
+
 function celebrate(){
  const phrases=[
   "أحسنتِ يا صغيرتي، إجابة رائعة!",
@@ -155,40 +156,7 @@ function celebrate(){
   window.speechSynthesis.speak(speech);
  }
 }
-     const source=ctx.createBufferSource();
-     const filter=ctx.createBiquadFilter();
-     const gain=ctx.createGain();
 
-     source.buffer=buffer;
-     filter.type="highpass";
-     filter.frequency.value=1000;
-     gain.gain.setValueAtTime(0.0001,ctx.currentTime+i*0.14);
-     gain.gain.linearRampToValueAtTime(0.35,ctx.currentTime+i*0.14+0.01);
-     gain.gain.exponentialRampToValueAtTime(0.0001,ctx.currentTime+i*0.14+0.09);
-
-     source.connect(filter);
-     filter.connect(gain);
-     gain.connect(ctx.destination);
-     source.start(ctx.currentTime+i*0.14);
-    }
-    setTimeout(()=>ctx.close(),2200);
-   });
-  }
- }catch(e){
-  console.log("تعذر تشغيل التصفيق");
- }
-
- // نطق عبارة التشجيع
- if("speechSynthesis" in window){
-  window.speechSynthesis.cancel();
-  const speech=new SpeechSynthesisUtterance(phrase);
-  speech.lang="ar-SA";
-  speech.rate=0.85;
-  speech.pitch=1.2;
-  speech.volume=1;
-  window.speechSynthesis.speak(speech);
- }
-} 
 function choose(value,correct,btn){
  const buttons=[...$("answers").children];
  buttons.forEach(b=>b.disabled=true);
