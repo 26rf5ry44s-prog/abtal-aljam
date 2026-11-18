@@ -123,49 +123,57 @@ $("stageLabel").textContent=index<3?"المرحلة الأولى: نتعرّف �
  
 
 
+
 function celebrate() {
   const phrases = [
     "يا سلام عليكِ يا بطلة!",
     "أبدعتِ يا صغيرتي!",
-    "برافو عليكِ!",
-    "ما شاء الله عليكِ، شاطرة!",
-    "ممتاز يا حلوة!",
-    "الله عليكِ، إجابة رائعة!",
-    "أحسنتِ يا نجمة!",
-    "واو! فخورة فيكِ!",
-    "يا ذكية، إجابتك صحيحة!",
-    "رائعة يا بطلة، استمري!"
+    "ممتازة! إجابة رائعة!",
+    "واو! شاطرة يا نجمة!",
+    "أحسنتِ، استمري يا مبدعة!",
+    "رائعة! فخورة فيكِ!"
   ];
-
-  if (!("speechSynthesis" in window)) return;
-
-  window.speechSynthesis.cancel();
 
   const phrase =
     phrases[Math.floor(Math.random() * phrases.length)];
 
-  const msg = new SpeechSynthesisUtterance(phrase);
+  // إيقاف الصوت السابق
+  window.speechSynthesis.cancel();
 
-  msg.lang = "ar-SA";
-  msg.rate = 0.85;
-  msg.pitch = 1.15;
-  msg.volume = 1;
+  const speak = () => {
+    const voices = window.speechSynthesis.getVoices();
 
-  const voices = window.speechSynthesis.getVoices();
+    const arabicVoices = voices.filter(v =>
+      v.lang.toLowerCase().startsWith("ar")
+    );
 
-  const arabicVoice = voices.find(v =>
-    v.lang.toLowerCase().startsWith("ar") &&
-    /female|woman|zira|laila|sara|hoda/i.test(v.name)
-  ) || voices.find(v =>
-    v.lang.toLowerCase().startsWith("ar")
-  );
+    const femaleVoice = arabicVoices.find(v =>
+      /female|woman|zira|sara|laila|hoda/i.test(v.name)
+    );
 
-  if (arabicVoice) {
-    msg.voice = arabicVoice;
+    const msg = new SpeechSynthesisUtterance(phrase);
+
+    msg.lang = "ar-SA";
+    msg.rate = 0.88;
+    msg.pitch = 1.35;
+    msg.volume = 1;
+
+    if (femaleVoice) {
+      msg.voice = femaleVoice;
+    } else if (arabicVoices.length) {
+      msg.voice = arabicVoices[0];
+    }
+
+    window.speechSynthesis.speak(msg);
+  };
+
+  if (window.speechSynthesis.getVoices().length) {
+    speak();
+  } else {
+    window.speechSynthesis.onvoiceschanged = speak;
   }
-
-  window.speechSynthesis.speak(msg);
 }
+
 
 function choose(value,correct,btn){
  const buttons=[...$("answers").children];
