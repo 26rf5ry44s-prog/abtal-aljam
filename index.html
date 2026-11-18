@@ -8,9 +8,9 @@
 <style>
 :root{--blue:#397fc5;--navy:#24527e;--pink:#f5a8c7;--yellow:#ffe6a6;--ink:#24364b;--bg:#f3f8ff}
 *{box-sizing:border-box}
-body{margin:0;font-family:Tahoma,Arial,sans-serif;background:linear-gradient(145deg,#eef7ff,#fff3f8);color:var(--ink);min-height:100vh;padding:18px;overflow-x:hidden}
-main{max-width:620px;margin:0 auto;position:relative}
-.card{background:#fff;border:2px solid #e3effb;border-radius:26px;padding:22px;box-shadow:0 12px 32px #31577b18;margin:12px 0;position:relative;z-index:2}
+body{margin:0;font-family:Tahoma,Arial,sans-serif;background:linear-gradient(145deg,#eef7ff,#fff3f8);color:var(--ink);min-height:100vh;padding:18px}
+main{max-width:620px;margin:0 auto}
+.card{background:#fff;border:2px solid #e3effb;border-radius:26px;padding:22px;box-shadow:0 12px 32px #31577b18;margin:12px 0}
 .hero{text-align:center;background:linear-gradient(135deg,#e6f3ff,#fff0f6)}
 h1{color:var(--navy);font-size:clamp(27px,6vw,38px);margin:8px 0}
 h2{color:var(--navy);margin:8px 0}
@@ -26,15 +26,12 @@ button{border:0;border-radius:15px;padding:14px 18px;font:inherit;font-size:18px
 .bar{height:100%;background:linear-gradient(90deg,#5aa6e8,#f2a6c7);width:0%;transition:width .25s}
 .question{background:#fff6df;border:2px dashed #f1d18b;border-radius:22px;text-align:center;padding:26px 12px;margin:16px 0}
 .question small{color:#926b22;font-size:16px}
-.sum{font-size:clamp(38px,10vw,56px);font-weight:bold;color:#24527e;margin:12px 0;direction:ltr;unicode-bidi:isolate}
+.sum{font-size:clamp(38px,10vw,56px);font-weight:bold;color:#24527e;margin:12px 0}
 .answers{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
-.answer{background:#eaf4ff;color:#24527e;border:2px solid #d2e6fb;font-size:27px;padding:18px 5px;transition:all 0.2s}
+.answer{background:#eaf4ff;color:#24527e;border:2px solid #d2e6fb;font-size:27px;padding:18px 5px}
 .answer:disabled{cursor:default;opacity:1}
-
-/* الألوان المطلوبة للإجابات الصحيحة والخاطئة مع الحفاظ على الشكل الأصلي */
-.answer.correct{background:#ddf6e8 !important;border-color:#7bd3a2 !important;color:#17643a !important;transform:scale(1.03)}
-.answer.wrong{background:#ffe6eb !important;border-color:#f1a1b2 !important;color:#9b2941 !important}
-
+.answer.correct{background:#ddf6e8;border-color:#7bd3a2;color:#17643a}
+.answer.wrong{background:#ffe6eb;border-color:#f1a1b2;color:#9b2941}
 .feedback{text-align:center;border-radius:16px;background:#f5f8fc;padding:15px;margin-top:16px;font-size:18px;font-weight:bold}
 .hidden{display:none!important}
 .badge{background:#fff0c9;border-radius:30px;padding:8px 13px;color:#805b12}
@@ -43,18 +40,10 @@ button{border:0;border-radius:15px;padding:14px 18px;font:inherit;font-size:18px
 .certificate{border:3px double #e1b95e;border-radius:18px;padding:20px;background:#fffdf6}
 .secondary{background:#edf4fb;color:#24527e;width:100%;margin-top:10px}
 footer{text-align:center;color:#7890a8;font-size:13px;padding:12px}
-
-/* قصاصات الاحتفال (Confetti) */
-.confetti-container{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:9999;overflow:hidden}
-.confetti{position:absolute;width:10px;height:10px;top:-10px;opacity:0.9;animation:fall linear forwards}
-@keyframes fall{0%{transform:translateY(0) rotate(0deg);opacity:1}100%{transform:translateY(100vh) rotate(720deg);opacity:0}}
-
 @media(max-width:420px){body{padding:10px}.card{padding:17px}.answer{font-size:23px;padding:16px 3px}}
-@media print{body{background:#fff;padding:0}.card{box-shadow:none;border:none}button,footer{display:none!important}}
 </style>
 </head>
 <body>
-<div class="confetti-container" id="confettiContainer"></div>
 <main>
 <section class="card hero" id="welcome">
   <div class="mascot">🧮🌟</div>
@@ -100,5 +89,67 @@ footer{text-align:center;color:#7890a8;font-size:13px;padding:12px}
 <script>
 const ar = n => String(n).replace(/\d/g, d => "٠١٢٣٤٥٦٧٨٩"[d]);
 const questions = [
-  [0,0],[0,5],[3,0],[1,2],[2,3],
-  [4,2],[5,3],[6,4],[7,2],[5
+ [0,0],[0,5],[3,0],[1,2],[2,3],
+ [4,2],[5,3],[6,4],[7,2],[5,5]
+];
+let index=0, score=0, studentName="";
+const $=id=>document.getElementById(id);
+function shuffle(a){return [...a].sort(()=>Math.random()-.5)}
+function start(){
+ studentName=$("student").value.trim();
+ if(!studentName){$("student").focus();return}
+ index=0;score=0;
+ $("welcome").classList.add("hidden");$("result").classList.add("hidden");$("game").classList.remove("hidden");
+ $("hello").textContent="أهلًا "+studentName+" 🌷";
+ render();
+}
+function render(){
+ const [a,b]=questions[index], correct=a+b;
+ $("score").textContent=ar(score);
+ $("questionNo").textContent="السؤال "+ar(index+1)+" من ١٠";
+ $("bar").style.width=((index+1)*10)+"%";
+
+$("sum").textContent=ar(a)+" + "+ar(b)+" = ؟";
+$("stageLabel").textContent=index<3?"المرحلة الأولى: نتعرّف على الصفر":index<7?"المرحلة الثانية: نجمع حتى ١٠":"المرحلة الثالثة: تحدّي الأبطال";
+
+‏ $("feedback").classList.add("hidden");$("next").classList.add("hidden");
+ const options=shuffle([correct,...shuffle(Array.from({length:11},(_,i)=>i).filter(v=>v!==correct)).slice(0,2)]);
+ $("answers").innerHTML="";
+ options.forEach(value=>{
+  const btn=document.createElement("button");
+  btn.className="answer";btn.textContent=ar(value);
+  btn.addEventListener("click",()=>choose(value,correct,btn));
+  $("answers").appendChild(btn);
+ });
+}
+function choose(value,correct,btn){
+ const buttons=[...$("answers").children];
+ buttons.forEach(b=>b.disabled=true);
+ const feedback=$("feedback");
+ if(value===correct){score++;btn.classList.add("correct");feedback.textContent="أحسنتِ يا "+studentName+"! إجابة صحيحة ⭐🎉";}
+ else{
+  btn.classList.add("wrong");
+  const right=buttons.find(b=>b.textContent===ar(correct));if(right)right.classList.add("correct");
+  feedback.textContent="محاولة جميلة! الإجابة الصحيحة هي "+ar(correct)+" 💗";
+ }
+ $("score").textContent=ar(score);
+ feedback.classList.remove("hidden");
+ $("next").textContent=index===9?"عرض نتيجتي 🏆":"السؤال التالي ←";
+ $("next").classList.remove("hidden");
+}
+function next(){
+ if(index<9){index++;render();}
+ else{
+  $("game").classList.add("hidden");$("result").classList.remove("hidden");
+  $("finalName").textContent=studentName;
+  $("finalScore").textContent=ar(score)+" / ١٠";
+  $("message").textContent=score===10?"ممتازة! حصلتِ على الدرجة الكاملة 🌟":score>=7?"رائعة! واصلي التدريب 👏":"أحسنتِ المحاولة، بالتدريب ستصبحين بطلة الجمع 💪";
+ }
+}
+$("start").addEventListener("click",start);
+$("next").addEventListener("click",next);
+$("again").addEventListener("click",()=>{$("result").classList.add("hidden");$("welcome").classList.remove("hidden");$("student").value=studentName;});
+$("student").addEventListener("keydown",e=>{if(e.key==="Enter")start()});
+</script>
+</body>
+</html>
