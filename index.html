@@ -103,12 +103,37 @@ let studentName = "";
 
 const $ = id => document.getElementById(id);
 
+// صوت المعلمة
+function teacherVoice(message) {
+ if (!("speechSynthesis" in window)) return;
+
+ window.speechSynthesis.cancel();
+
+ const speech = new SpeechSynthesisUtterance(message);
+ const voices = window.speechSynthesis.getVoices();
+
+ const arabicVoice =
+  voices.find(v => v.lang.toLowerCase() === "ar-sa") ||
+  voices.find(v => v.lang.toLowerCase().startsWith("ar"));
+
+ if (arabicVoice) speech.voice = arabicVoice;
+
+ speech.lang = "ar-SA";
+ speech.rate = 0.88;
+ speech.pitch = 1.15;
+ speech.volume = 1;
+
+ window.speechSynthesis.speak(speech);
+}
+
 function shuffle(array) {
  const result = [...array];
+
  for (let i = result.length - 1; i > 0; i--) {
   const j = Math.floor(Math.random() * (i + 1));
   [result[i], result[j]] = [result[j], result[i]];
  }
+
  return result;
 }
 
@@ -129,6 +154,9 @@ function start() {
  $("game").classList.remove("hidden");
 
  $("hello").textContent = "أهلًا " + studentName + " 🌷";
+
+ teacherVoice("أهلًا يا بطلتي! يلا نبدأ التحدي! أنا متحمسة أشوف إبداعك!");
+
  render();
 }
 
@@ -139,6 +167,7 @@ function render() {
  $("score").textContent = ar(score);
  $("questionNo").textContent = "السؤال " + ar(index + 1) + " من ١٠";
  $("bar").style.width = ((index + 1) * 10) + "%";
+
  $("sum").textContent = ar(a) + " + " + ar(b) + " = ؟";
 
  $("stageLabel").textContent =
@@ -155,13 +184,17 @@ function render() {
  ).slice(0, 2);
 
  const options = shuffle([correct, ...wrongAnswers]);
+
  $("answers").innerHTML = "";
 
  options.forEach(value => {
   const btn = document.createElement("button");
+
   btn.className = "answer";
   btn.textContent = ar(value);
+
   btn.addEventListener("click", () => choose(value, correct, btn));
+
   $("answers").appendChild(btn);
  });
 }
@@ -175,17 +208,42 @@ function choose(value, correct, btn) {
  if (value === correct) {
   score++;
   btn.classList.add("correct");
-  feedback.textContent = "أحسنتِ يا " + studentName + "! إجابة صحيحة ⭐🎉";
+
+  const phrases = [
+   "أحسنتِ يا بطلتي! إجابة رائعة!",
+   "يا سلام عليكِ! شاطرة ومبدعة!",
+   "ممتازة يا صغيرتي! كفو عليكِ!",
+   "واو! إجابة صحيحة! استمري يا بطلة!",
+   "الله عليكِ! فخورة فيكِ يا حلوة!"
+  ];
+
+  const phrase = phrases[Math.floor(Math.random() * phrases.length)];
+
+  feedback.textContent = phrase + " ⭐🎉";
+  teacherVoice(phrase);
+
  } else {
   btn.classList.add("wrong");
-  const right = buttons.find(button => button.textContent === ar(correct));
+
+  const right = buttons.find(
+   button => button.textContent === ar(correct)
+  );
+
   if (right) right.classList.add("correct");
-  feedback.textContent = "محاولة جميلة! الإجابة الصحيحة هي " + ar(correct) + " 💗";
+
+  feedback.textContent =
+   "محاولة جميلة! الإجابة الصحيحة هي " + ar(correct) + " 💗";
+
+  teacherVoice("لا بأس يا صغيرتي! كلنا نتعلم. حاولي مرة ثانية، أنتِ تستطيعين!");
  }
 
  $("score").textContent = ar(score);
+
  feedback.classList.remove("hidden");
- $("next").textContent = index === 9 ? "عرض نتيجتي 🏆" : "السؤال التالي ←";
+
+ $("next").textContent =
+  index === 9 ? "عرض نتيجتي 🏆" : "السؤال التالي ←";
+
  $("next").classList.remove("hidden");
 }
 
@@ -198,19 +256,30 @@ function next() {
 
  $("game").classList.add("hidden");
  $("result").classList.remove("hidden");
+
  $("finalName").textContent = studentName;
  $("finalScore").textContent = ar(score) + " / ١٠";
 
- $("message").textContent =
-  score === 10 ? "ممتازة! حصلتِ على الدرجة الكاملة 🌟" :
-  score >= 7 ? "رائعة! واصلي التدريب 👏" :
-  "أحسنتِ المحاولة، بالتدريب ستصبحين بطلة الجمع 💪";
+ let message;
+
+ if (score === 10) {
+  message = "يا سلام! الدرجة الكاملة! أنتِ بطلة الجمع!";
+ } else if (score >= 7) {
+  message = "ممتازة يا بطلتي! مستواك رائع!";
+ } else {
+  message = "أحسنتِ المحاولة! بالتدريب ستصبحين بطلة الجمع!";
+ }
+
+ $("message").textContent = message;
+ teacherVoice(message);
 }
 
 $("start").addEventListener("click", start);
 $("next").addEventListener("click", next);
 
 $("again").addEventListener("click", function() {
+ window.speechSynthesis.cancel();
+
  $("result").classList.add("hidden");
  $("welcome").classList.remove("hidden");
  $("student").value = studentName;
@@ -221,6 +290,8 @@ $("student").addEventListener("keydown", function(event) {
  if (event.key === "Enter") start();
 });
 </script>
+
+
 
 </body>
 </html>
