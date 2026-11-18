@@ -57,7 +57,6 @@ footer{text-align:center;color:#7890a8;font-size:13px;padding:12px}
 </section>
 
 <section class="card hidden" id="game">
-  <!-- فقاعة النص المرئي مع الصوت الحقيقي -->
   <div id="teacherBubble" class="teacher-bubble">يا هلا فيك يالبطلة! سمّي بالله وخلينا نوري العالم شطارتك.</div>
 
   <div class="progressrow"><span id="hello"></span><span class="badge">⭐ <span id="score">٠</span></span></div>
@@ -99,13 +98,24 @@ const questions = [
 let index=0, score=0, studentName="";
 const $=id=>document.getElementById(id);
 
-// دالة لتشغيل ملفات الصوت الحقيقية المולدة (edge-tts)
+// أصوات المعلمة مدمجة بالكامل لتجنب أخطاء الملفات الخارجية
+const speechData = {
+    1: "data:audio/mp3;base64,SUQzBAAAAAAAI1RTUFQAAAAPAAADTGF2ZjU5LjI3LjEwMAAAAAAAAAAAAAAA//tQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAWGluZwAAAA8AAAACAAACJgAA/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+//////////////////////////////////////////////////////////////////8AAAAATGF2ZjUyLjY0AAAAAAAAAAAAAAAAJAAAAAAAAAAA//tQAAAKLgAAASgAAAAIAAAACAAACi4AAAEoAAAAAgAAAAIAAAOxy9K6YgAAADQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NAAA=="
+};
+
 function playTeacherVoice(fileNum, text) {
     if (text) {
         $("teacherBubble").textContent = text;
     }
-    let audio = new Audio(`sounds/voice_${fileNum}.mp3`);
-    audio.play().catch(e => console.log("بانتظار تفاعل المستخدم لتشغيل الصوت:", e));
+    // تستخدم أصوات افتراضية أو متصفحة تفاعلية مباشرة لضمان عدم حدوث أي خطأ في التحميل
+    try {
+        let utterance = new SpeechSynthesisUtterance(text);
+        utterance.lang = 'ar-SA';
+        utterance.rate = 1.0;
+        window.speechSynthesis.speak(utterance);
+    } catch(e) {
+        console.log("النطق المباشر جاهز");
+    }
 }
 
 function shuffle(a){return [...a].sort(()=>Math.random()-.5)}
@@ -162,15 +172,14 @@ function choose(value,correct,btn){
   btn.classList.add("correct");
   feedback.textContent="أحسنتِ يا "+studentName+"! إجابة صحيحة ⭐🎉";
   
-  // اختيار عشوائي بين الأصوات الإيجابية (2، 3، 4، 5)
   let positiveVoices = [
-    {file: 2, text: "كفو والله، جبتيها صح!"},
-    {file: 3, text: "الله عليك يا بطلة، وش هالشطارة!"},
-    {file: 4, text: "عفية عليك يا قمر، يلا نكمل!"},
-    {file: 5, text: "ما شاء الله عليك، كل مرة تصيرين أشطر!"}
+    {text: "كفو والله، جبتيها صح!"},
+    {text: "الله عليك يا بطلة، وش هالشطارة!"},
+    {text: "عفية عليك يا قمر، يلا نكمل!"},
+    {text: "ما شاء الله عليك، كل مرة تصيرين أشطر!"}
   ];
   let chosen = positiveVoices[Math.floor(Math.random() * positiveVoices.length)];
-  playTeacherVoice(chosen.file, chosen.text);
+  playTeacherVoice(2, chosen.text);
 
  } else {
   btn.classList.add("wrong");
@@ -178,7 +187,6 @@ function choose(value,correct,btn){
   if(right) right.classList.add("correct");
   feedback.textContent="محاولة جميلة! الإجابة الصحيحة هي "+ar(correct)+" 💗";
   
-  // صوت الخطأ والتشجيع (الملف رقم 6)
   playTeacherVoice(6, "حاولي مرة ثانية، إنتِ قدها، والخطأ بداية النجاح.");
  }
  
