@@ -119,12 +119,76 @@ $("stageLabel").textContent=index<3?"المرحلة الأولى: نتعرّف �
   btn.addEventListener("click",()=>choose(value,correct,btn));
   $("answers").appendChild(btn);
  });
-}
+} 
+ 
+function celebrate(){
+ const phrases=[
+  "أنتِ رائعة!",
+  "أبدعتِ يا صغيرتي!",
+  "ممتازة يا بطلة!",
+  "أحسنتِ، إجابة صحيحة!",
+  "واو! أنتِ ذكية ومتميزة!"
+ ];
+
+ const phrase=phrases[Math.floor(Math.random()*phrases.length)];
+
+ // تشغيل التصفيق
+ try{
+  const AudioCtx=window.AudioContext||window.webkitAudioContext;
+  if(AudioCtx){
+   const ctx=new AudioCtx();
+   ctx.resume().then(()=>{
+    for(let i=0;i<8;i++){
+     const buffer=ctx.createBuffer(1,ctx.sampleRate*0.09,ctx.sampleRate);
+     const data=buffer.getChannelData(0);
+     for(let j=0;j<data.length;j++){
+      data[j]=(Math.random()*2-1);
+     }
+
+     const source=ctx.createBufferSource();
+     const filter=ctx.createBiquadFilter();
+     const gain=ctx.createGain();
+
+     source.buffer=buffer;
+     filter.type="highpass";
+     filter.frequency.value=1000;
+     gain.gain.setValueAtTime(0.0001,ctx.currentTime+i*0.14);
+     gain.gain.linearRampToValueAtTime(0.35,ctx.currentTime+i*0.14+0.01);
+     gain.gain.exponentialRampToValueAtTime(0.0001,ctx.currentTime+i*0.14+0.09);
+
+     source.connect(filter);
+     filter.connect(gain);
+     gain.connect(ctx.destination);
+     source.start(ctx.currentTime+i*0.14);
+    }
+    setTimeout(()=>ctx.close(),2200);
+   });
+  }
+ }catch(e){
+  console.log("تعذر تشغيل التصفيق");
+ }
+
+ // نطق عبارة التشجيع
+ if("speechSynthesis" in window){
+  window.speechSynthesis.cancel();
+  const speech=new SpeechSynthesisUtterance(phrase);
+  speech.lang="ar-SA";
+  speech.rate=0.85;
+  speech.pitch=1.2;
+  speech.volume=1;
+  window.speechSynthesis.speak(speech);
+ }
+} 
 function choose(value,correct,btn){
  const buttons=[...$("answers").children];
  buttons.forEach(b=>b.disabled=true);
  const feedback=$("feedback");
- if(value===correct){score++;btn.classList.add("correct");feedback.textContent="أحسنتِ يا "+studentName+"! إجابة صحيحة ⭐🎉";}
+ if(value===correct){
+  score++;
+  btn.classList.add("correct");
+  feedback.textContent="أحسنتِ يا "+studentName+"! إجابة صحيحة ⭐🎉";
+  celebrate();
+}
  else{
   btn.classList.add("wrong");
   const right=buttons.find(b=>b.textContent===ar(correct));if(right)right.classList.add("correct");
