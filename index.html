@@ -123,28 +123,38 @@ $("stageLabel").textContent=index<3?"المرحلة الأولى: نتعرّف �
  
 function celebrate(){
  const phrases=[
-  "أنتِ رائعة!",
-  "أبدعتِ يا صغيرتي!",
-  "ممتازة يا بطلة!",
-  "أحسنتِ، إجابة صحيحة!",
-  "واو! أنتِ ذكية ومتميزة!"
+  "أحسنتِ يا صغيرتي، إجابة رائعة!",
+  "أبدعتِ يا بطلة!",
+  "ما شاء الله عليكِ، أنتِ متميزة!",
+  "ممتازة، واصلي تألقك!",
+  "فخورة بكِ يا مبدعة!",
+  "رائعة! تستحقين التصفيق!"
  ];
 
  const phrase=phrases[Math.floor(Math.random()*phrases.length)];
 
- // تشغيل التصفيق
- try{
-  const AudioCtx=window.AudioContext||window.webkitAudioContext;
-  if(AudioCtx){
-   const ctx=new AudioCtx();
-   ctx.resume().then(()=>{
-    for(let i=0;i<8;i++){
-     const buffer=ctx.createBuffer(1,ctx.sampleRate*0.09,ctx.sampleRate);
-     const data=buffer.getChannelData(0);
-     for(let j=0;j<data.length;j++){
-      data[j]=(Math.random()*2-1);
-     }
+ if("speechSynthesis" in window){
+  window.speechSynthesis.cancel();
 
+  const voices=window.speechSynthesis.getVoices();
+  const arabicVoices=voices.filter(v=>v.lang.toLowerCase().startsWith("ar"));
+  const femaleVoice=arabicVoices.find(v=>
+   /female|woman|zira|sara|laila|hoda/i.test(v.name)
+  );
+
+  const speech=new SpeechSynthesisUtterance(phrase);
+  speech.lang="ar-SA";
+  speech.rate=0.82;
+  speech.pitch=1.05;
+  speech.volume=1;
+
+  if(femaleVoice){
+   speech.voice=femaleVoice;
+  }
+
+  window.speechSynthesis.speak(speech);
+ }
+}
      const source=ctx.createBufferSource();
      const filter=ctx.createBiquadFilter();
      const gain=ctx.createGain();
