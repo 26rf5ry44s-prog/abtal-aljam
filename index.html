@@ -5,19 +5,20 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>أبطال الجمع</title>
 <style>
-body{font-family:Tahoma;background:#f3f8ff;text-align:center;padding:20px;color:#24364b}
+body{font-family:Tahoma,sans-serif;background:#f3f8ff;text-align:center;padding:20px;color:#24364b}
 .card{background:#fff;max-width:500px;margin:20px auto;padding:25px;border-radius:20px;box-shadow:0 8px 24px rgba(0,0,0,0.1)}
 button{background:#397fc5;color:#fff;border:0;padding:15px 25px;font-size:18px;border-radius:12px;cursor:pointer;margin:10px;font-weight:bold}
 .answer{background:#eaf4ff;color:#24527e;font-size:24px;width:30%}
 .hidden{display:none}
+input{padding:12px;font-size:16px;width:80%;border-radius:10px;border:1px solid #ccc;text-align:center;margin-bottom:10px}
 </style>
 </head>
 <body>
 <div class="card" id="welcome">
   <h2>أبطال الجمع 🧮</h2>
   <p>اكتبي اسم البطلة:</p>
-  <input id="student" placeholder="اسم الطالبة" style="padding:12px;font-size:16px;width:80%;border-radius:10px;border:1px solid #ccc;text-align:center"><br>
-  <button onclick="start()">ابدئي اللعب 🚀</button>
+  <input id="student" placeholder="اسم الطالبة"><br>
+  <button onclick="startGame()">ابدئي اللعب 🚀</button>
 </div>
 
 <div class="card hidden" id="game">
@@ -28,7 +29,7 @@ button{background:#397fc5;color:#fff;border:0;padding:15px 25px;font-size:18px;b
 </div>
 
 <script>
-let name="", index=0, score=0;
+let studentName = "", index = 0;
 const qs = [[0,0],[1,2],[2,3],[4,2],[5,3]];
 
 function speak(text) {
@@ -39,42 +40,47 @@ function speak(text) {
     } catch(e) {}
 }
 
-function start() {
-    name = document.getElementById("student").value.trim();
-    if(!name) return;
+function startGame() {
+    let inputVal = document.getElementById("student").value.trim();
+    if(!inputVal) {
+        alert("الرجاء كتابة اسم الطالبة أولاً");
+        return;
+    }
+    studentName = inputVal;
     document.getElementById("welcome").classList.add("hidden");
     document.getElementById("game").classList.remove("hidden");
-    document.getElementById("hello").textContent = "أهلاً بك يا " + name + " 🌷";
-    speak("أهلاً بك يا " + name + "، ابدئي التحدي!");
-    nextQ();
+    document.getElementById("hello").textContent = "أهلاً بك يا " + studentName + " 🌷";
+    speak("أهلاً بك يا " + studentName + "، ابدئي التحدي!");
+    showQuestion();
 }
 
-function nextQ() {
+function showQuestion() {
     if(index >= qs.length) {
-        document.getElementById("game").innerHTML = "<h2>أحسنتِ يا " + name + "! أنهيتِ التحدي بكل شطارة 🏆🌟</h2>";
+        document.getElementById("game").innerHTML = "<h2>أحسنتِ يا " + studentName + "! أنهيتِ التحدي بكل شطارة 🏆🌟</h2>";
         speak("أهلاً بك، أنهيت التحدي بكل شطارة!");
         return;
     }
-    let [a, b] = qs[index], corr = a + b;
-    document.getElementById("sum.textContent" || "sum").textContent = a + " + " + b + " = ؟";
+    let pair = qs[index];
+    let a = pair[0], b = pair[1], corr = a + b;
+    document.getElementById("sum").textContent = a + " + " + b + " = ؟";
     document.getElementById("msg").textContent = "";
     
     let opts = [corr, corr+1 > 10 ? 0 : corr+1, corr-1 < 0 ? 5 : corr-1].sort(()=>Math.random()-.5);
     let html = "";
     opts.forEach(o => {
-        html += `<button class="answer" onclick="check(${o}, ${corr})">${o}</button>`;
+        html += `<button class="answer" onclick="checkAns(${o}, ${corr})">${o}</button>`;
     });
     document.getElementById("answers").innerHTML = html;
 }
 
-function check(val, corr) {
+function checkAns(val, corr) {
     if(val === corr) {
         document.getElementById("msg").textContent = "إجابة صحيحة! أحسنتِ ⭐";
         speak("كفو والله، إجابة صحيحة!");
         index++;
-        setTimeout(nextQ, 1500);
+        setTimeout(showQuestion, 1500);
     } else {
-        document.getElementById("msg").textContent = "محاولة أخرى يا بطلة 💪";
+        document.getElementById("msg").textContent = "حاولي مرة أخرى يا بطلة 💪";
         speak("حاولي مرة أخرى، إنت قدها!");
     }
 }
