@@ -103,9 +103,58 @@ let studentName = "";
 
 const $ = id => document.getElementById(id);
 
-// صوت المعلمةalert("اختبار الصوت");
-teacherVoice("مرحباً يا بطلتي، أحسنتِ! هيا نبدأ اللعب!");
+
+let voiceQueue = [];
+let voiceBusy = false;
+
 function teacherVoice(message) {
+ if (!("speechSynthesis" in window)) return;
+
+ window.speechSynthesis.cancel();
+
+ voiceQueue = [message];
+ voiceBusy = false;
+
+ const speak = () => {
+  if (!voiceQueue.length) {
+   voiceBusy = false;
+   return;
+  }
+
+  voiceBusy = true;
+
+  const text = voiceQueue.shift();
+  const speech = new SpeechSynthesisUtterance(text);
+  const voices = window.speechSynthesis.getVoices();
+
+  const arabicVoice =
+   voices.find(v => v.lang.toLowerCase() === "ar-sa") ||
+   voices.find(v => v.lang.toLowerCase().startsWith("ar"));
+
+  if (arabicVoice) speech.voice = arabicVoice;
+
+  speech.lang = "ar-SA";
+  speech.rate = 0.85;
+  speech.pitch = 1.1;
+  speech.volume = 1;
+
+  speech.onend = () => {
+   voiceBusy = false;
+   speak();
+  };
+
+  speech.onerror = () => {
+   voiceBusy = false;
+  };
+
+  window.speechSynthesis.speak(speech);
+ };
+
+ speak();
+}
+
+
+
  if (!("speechSynthesis" in window)) return;
 
  window.speechSynthesis.cancel();
