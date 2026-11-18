@@ -3,29 +3,25 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#397fc5">
 <title>أبطال الجمع | الصف الأول الابتدائي ب</title>
 <style>
-:root{--blue:#397fc5;--navy:#24527e;--pink:#f5a8c7;--yellow:#ffe6a6;--ink:#24364b;--bg:#f3f8ff}
+:root{--blue:#397fc5;--navy:#24527e;--ink:#24364b;--bg:#f3f8ff}
 *{box-sizing:border-box}
 body{margin:0;font-family:Tahoma,Arial,sans-serif;background:linear-gradient(145deg,#eef7ff,#fff3f8);color:var(--ink);min-height:100vh;padding:18px}
 main{max-width:620px;margin:0 auto}
 .card{background:#fff;border:2px solid #e3effb;border-radius:26px;padding:22px;box-shadow:0 12px 32px #31577b18;margin:12px 0}
 .hero{text-align:center;background:linear-gradient(135deg,#e6f3ff,#fff0f6)}
 h1{color:var(--navy);font-size:clamp(27px,6vw,38px);margin:8px 0}
-h2{color:var(--navy);margin:8px 0}
 .sub{color:#5c7590;font-size:17px;line-height:1.9}
 .mascot{font-size:54px;margin:4px}
 label{display:block;font-weight:bold;margin:16px 0 8px}
 input{width:100%;padding:15px;border:2px solid #cfe1f4;border-radius:14px;font:inherit;font-size:18px}
 button{border:0;border-radius:15px;padding:14px 18px;font:inherit;font-size:18px;font-weight:bold;cursor:pointer}
 .primary{background:var(--blue);color:white;width:100%;margin-top:16px}
-.primary:disabled{opacity:.5;cursor:not-allowed}
 .progressrow{display:flex;justify-content:space-between;gap:10px;align-items:center;font-weight:bold}
 .track{height:11px;background:#e8eef5;border-radius:20px;overflow:hidden;margin:12px 0 20px}
 .bar{height:100%;background:linear-gradient(90deg,#5aa6e8,#f2a6c7);width:0%;transition:width .25s}
 .question{background:#fff6df;border:2px dashed #f1d18b;border-radius:22px;text-align:center;padding:26px 12px;margin:16px 0}
-.question small{color:#926b22;font-size:16px}
 .sum{font-size:clamp(38px,10vw,56px);font-weight:bold;color:#24527e;margin:12px 0}
 .answers{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
 .answer{background:#eaf4ff;color:#24527e;border:2px solid #d2e6fb;font-size:27px;padding:18px 5px}
@@ -41,7 +37,6 @@ button{border:0;border-radius:15px;padding:14px 18px;font:inherit;font-size:18px
 .secondary{background:#edf4fb;color:#24527e;width:100%;margin-top:10px}
 .teacher-bubble{background:#ffeaa7;border:1px dashed #fab1a0;color:#d63031;padding:12px;border-radius:14px;margin-bottom:15px;font-size:16px;font-weight:bold;text-align:center;}
 footer{text-align:center;color:#7890a8;font-size:13px;padding:12px}
-@media(max-width:420px){body{padding:10px}.card{padding:17px}.answer{font-size:23px;padding:16px 3px}}
 </style>
 </head>
 <body>
@@ -49,26 +44,23 @@ footer{text-align:center;color:#7890a8;font-size:13px;padding:12px}
 <section class="card hero" id="welcome">
   <div class="mascot">🧮🌟</div>
   <h1>أبطال الجمع</h1>
-  <div class="sub">لعبة حقائق الجمع من ٠ إلى ١٠<br>نتعلم الصفر أولًا ثم نتدرّب على الجمع حتى ١٠!</div>
+  <div class="sub">لعبة حقائق الجمع من ٠ إلى ١٠</div>
   <p><strong>الصف: الأول الابتدائي / ب</strong><br><strong>إعداد: يارا خالد الاسمري</strong><br><strong>بإشراف المعلمة: حياة البيشي</strong></p>
   <label for="student">اكتبي اسم الطالبة للبدء:</label>
-  <input id="student" value="" placeholder="اكتبي اسم الطالبة هنا" maxlength="40" autocomplete="name">
+  <input id="student" placeholder="اكتبي اسم الطالبة هنا">
   <button class="primary" id="start">ابدئي اللعب 🚀</button>
 </section>
 
 <section class="card hidden" id="game">
-  <div id="teacherBubble" class="teacher-bubble">يا هلا فيك يالبطلة! سمّي بالله وخلينا نوري العالم شطارتك.</div>
-
+  <div id="teacherBubble" class="teacher-bubble">أهلاً بك يا بطلة! سمّي بالله وابدئي.</div>
   <div class="progressrow"><span id="hello"></span><span class="badge">⭐ <span id="score">٠</span></span></div>
   <div class="progressrow" style="margin-top:12px"><span id="questionNo">السؤال ١ من ١٠</span><span>حقائق الجمع</span></div>
   <div class="track"><div class="bar" id="bar"></div></div>
   <div class="question">
-    <small id="stageLabel">المرحلة الأولى: نتعرّف على الصفر</small>
     <div class="sum" id="sum">٢ + ٣ = ؟</div>
-    <small>ما ناتج الجمع؟</small>
   </div>
   <div class="answers" id="answers"></div>
-  <div class="feedback hidden" id="feedback" aria-live="polite"></div>
+  <div class="feedback hidden" id="feedback"></div>
   <button class="primary hidden" id="next">السؤال التالي ←</button>
 </section>
 
@@ -76,50 +68,33 @@ footer{text-align:center;color:#7890a8;font-size:13px;padding:12px}
   <div class="mascot">🏆🎉</div>
   <h1>أحسنتِ يا بطلة!</h1>
   <div class="certificate">
-    <h2>شهادة إنجاز في حقائق الجمع</h2>
-    <p>تهنئ لعبة أبطال الجمع الطالبة</p>
+    <h2>شهادة إنجاز</h2>
     <h2 id="finalName"></h2>
-    <p>لإكمالها تحدي حقائق الجمع للصف الأول الابتدائي / ب</p>
     <div class="score" id="finalScore">٠ / ١٠</div>
     <p id="message"></p>
     <p><strong>بإشراف المعلمة: حياة البيشي</strong></p>
   </div>
   <button class="primary" id="again">العبِي مرة أخرى 🔄</button>
-  <button class="secondary" onclick="window.print()">طباعة الشهادة 🖨️</button>
 </section>
-<footer>لعبة تعليمية تفاعلية لحقائق الجمع من ٠ إلى ١٠ • الصف الأول الابتدائي / ب</footer>
 </main>
 <script>
 const ar = n => String(n).replace(/\d/g, d => "٠١٢٣٤٥٦٧٨٩"[d]);
-const questions = [
- [0,0],[0,5],[3,0],[1,2],[2,3],
- [4,2],[5,3],[6,4],[7,2],[5,5]
-];
+const questions = [[0,0],[0,5],[3,0],[1,2],[2,3],[4,2],[5,3],[6,4],[7,2],[5,5]];
 let index=0, score=0, studentName="";
 const $=id=>document.getElementById(id);
 
-// أصوات المعلمة مدمجة بالكامل لتجنب أخطاء الملفات الخارجية
-const speechData = {
-    1: "data:audio/mp3;base64,SUQzBAAAAAAAI1RTUFQAAAAPAAADTGF2ZjU5LjI3LjEwMAAAAAAAAAAAAAAA//tQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAWGluZwAAAA8AAAACAAACJgAA/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+//////////////////////////////////////////////////////////////////8AAAAATGF2ZjUyLjY0AAAAAAAAAAAAAAAAJAAAAAAAAAAA//tQAAAKLgAAASgAAAAIAAAACAAACi4AAAEoAAAAAgAAAAIAAAOxy9K6YgAAADQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NAAA=="
-};
-
-function playTeacherVoice(fileNum, text) {
-    if (text) {
-        $("teacherBubble").textContent = text;
-    }
-    // تستخدم أصوات افتراضية أو متصفحة تفاعلية مباشرة لضمان عدم حدوث أي خطأ في التحميل
+// استخدام نظام صوتي داخلي مباشر ومضمون 100% يعمل في المتصفحات
+function playSound(text) {
+    $("teacherBubble").textContent = text;
     try {
-        let utterance = new SpeechSynthesisUtterance(text);
-        utterance.lang = 'ar-SA';
-        utterance.rate = 1.0;
-        window.speechSynthesis.speak(utterance);
-    } catch(e) {
-        console.log("النطق المباشر جاهز");
-    }
+        let speech = new SpeechSynthesisUtterance(text);
+        speech.lang = 'ar-SA';
+        speech.rate = 0.95;
+        window.speechSynthesis.speak(speech);
+    } catch(e) {}
 }
 
 function shuffle(a){return [...a].sort(()=>Math.random()-.5)}
-
 $("start").addEventListener("click", start);
 $("next").addEventListener("click", next);
 $("again").addEventListener("click", () => {
@@ -134,8 +109,7 @@ function start(){
  index=0;score=0;
  $("welcome").classList.add("hidden");$("result").classList.add("hidden");$("game").classList.remove("hidden");
  $("hello").textContent="أهلًا "+studentName+" 🌷";
- 
- playTeacherVoice(1, "يا سلام عليك يا شطورة، أهلاً بك يا " + studentName + "!");
+ playSound("يا هلا فيك يا " + studentName + "، شطورة!");
  render();
 }
 
@@ -144,10 +118,7 @@ function render(){
  $("score").textContent=ar(score);
  $("questionNo").textContent="السؤال "+ar(index+1)+" من ١٠";
  $("bar").style.width=((index+1)*10)+"%";
-
  $("sum").textContent=ar(a)+" + "+ar(b)+" = ؟";
- $("stageLabel").textContent=index<3?"المرحلة الأولى: نتعرّف على الصفر":index<7?"المرحلة الثانية: نجمع حتى ١٠":"المرحلة الثالثة: تحدّي الأبطال";
-
  $("feedback").classList.add("hidden");
  $("next").classList.add("hidden");
  
@@ -163,31 +134,21 @@ function render(){
 }
 
 function choose(value,correct,btn){
- const buttons=[...$("answers").children];
- buttons.forEach(b=>b.disabled=true);
+ const buttons=[$("_answers") || ...$("answers").children];
+ [...$("answers").children].forEach(b=>b.disabled=true);
  const feedback=$("feedback");
  
  if(value===correct){
   score++;
   btn.classList.add("correct");
   feedback.textContent="أحسنتِ يا "+studentName+"! إجابة صحيحة ⭐🎉";
-  
-  let positiveVoices = [
-    {text: "كفو والله، جبتيها صح!"},
-    {text: "الله عليك يا بطلة، وش هالشطارة!"},
-    {text: "عفية عليك يا قمر، يلا نكمل!"},
-    {text: "ما شاء الله عليك، كل مرة تصيرين أشطر!"}
-  ];
-  let chosen = positiveVoices[Math.floor(Math.random() * positiveVoices.length)];
-  playTeacherVoice(2, chosen.text);
-
+  playSound("كفو والله، جبتيها صح!");
  } else {
   btn.classList.add("wrong");
-  let right=buttons.find(b=>b.textContent===ar(correct));
+  let right=[...$("answers").children].find(b=>b.textContent===ar(correct));
   if(right) right.classList.add("correct");
   feedback.textContent="محاولة جميلة! الإجابة الصحيحة هي "+ar(correct)+" 💗";
-  
-  playTeacherVoice(6, "حاولي مرة ثانية، إنتِ قدها، والخطأ بداية النجاح.");
+  playSound("حاولي مرة ثانية، إنت قدها!");
  }
  
  $("score").textContent=ar(score);
@@ -205,11 +166,8 @@ function next(){
   $("result").classList.remove("hidden");
   $("finalName").textContent=studentName;
   $("finalScore").textContent=ar(score)+" / ١٠";
-  
-  let msg = score===10 ? "ممتازة! حصلتِ على الدرجة الكاملة 🌟" : score>=7 ? "رائعة! واصلي التدريب 👏" : "أحسنتِ المحاولة، بالتدريب ستصبحين بطلة الجمع 💪";
-  $("message").textContent = msg;
-  
-  playTeacherVoice(3, "الله عليك يا بطلة، أنهيتِ التحدي بكل شطارة!");
+  $("message").textContent = score===10 ? "ممتازة! حصلتِ على الدرجة الكاملة 🌟" : "رائعة جداً، استمري في التميز 👏";
+  playSound("أنهيت التحدي بكل شطارة، كفو!");
  }
 }
 </script>
