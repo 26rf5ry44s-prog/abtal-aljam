@@ -1,3 +1,4 @@
+
 <!doctype html>
 <html lang="ar" dir="rtl">
 <head>
@@ -5,92 +6,318 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#397fc5">
 <title>أبطال الجمع | الصف الأول الابتدائي ب</title>
+
 <style>
-:root{--blue:#397fc5;--navy:#24527e;--pink:#f5a8c7;--yellow:#ffe6a6;--ink:#24364b;--bg:#f3f8ff}
+:root{
+ --blue:#397fc5;
+ --navy:#24527e;
+ --pink:#f5a8c7;
+ --yellow:#ffe6a6;
+ --ink:#24364b;
+ --bg:#f3f8ff;
+}
 *{box-sizing:border-box}
-body{margin:0;font-family:Tahoma,Arial,sans-serif;background:linear-gradient(145deg,#eef7ff,#fff3f8);color:var(--ink);min-height:100vh;padding:18px}
+body{
+ margin:0;
+ font-family:Tahoma,Arial,sans-serif;
+ background:linear-gradient(145deg,#eef7ff,#fff3f8);
+ color:var(--ink);
+ min-height:100vh;
+ padding:18px;
+}
 main{max-width:620px;margin:0 auto}
-.card{background:#fff;border:2px solid #e3effb;border-radius:26px;padding:22px;box-shadow:0 12px 32px #31577b18;margin:12px 0}
-.hero{text-align:center;background:linear-gradient(135deg,#e6f3ff,#fff0f6)}
-h1{color:var(--navy);font-size:clamp(27px,6vw,38px);margin:8px 0}
+.card{
+ background:#fff;
+ border:2px solid #e3effb;
+ border-radius:26px;
+ padding:22px;
+ box-shadow:0 12px 32px #31577b18;
+ margin:12px 0;
+}
+.hero{
+ text-align:center;
+ background:linear-gradient(135deg,#e6f3ff,#fff0f6);
+}
+h1{
+ color:var(--navy);
+ font-size:clamp(27px,6vw,38px);
+ margin:8px 0;
+}
 h2{color:var(--navy);margin:8px 0}
 .sub{color:#5c7590;font-size:17px;line-height:1.9}
 .mascot{font-size:54px;margin:4px}
 label{display:block;font-weight:bold;margin:16px 0 8px}
-input{width:100%;padding:15px;border:2px solid #cfe1f4;border-radius:14px;font:inherit;font-size:18px}
-button{border:0;border-radius:15px;padding:14px 18px;font:inherit;font-size:18px;font-weight:bold;cursor:pointer}
-.primary{background:var(--blue);color:white;width:100%;margin-top:16px}
+input{
+ width:100%;
+ padding:15px;
+ border:2px solid #cfe1f4;
+ border-radius:14px;
+ font:inherit;
+ font-size:18px;
+}
+button{
+ border:0;
+ border-radius:15px;
+ padding:14px 18px;
+ font:inherit;
+ font-size:18px;
+ font-weight:bold;
+ cursor:pointer;
+}
+.primary{
+ background:var(--blue);
+ color:white;
+ width:100%;
+ margin-top:16px;
+}
 .primary:disabled{opacity:.5;cursor:not-allowed}
-.progressrow{display:flex;justify-content:space-between;gap:10px;align-items:center;font-weight:bold}
-.track{height:11px;background:#e8eef5;border-radius:20px;overflow:hidden;margin:12px 0 20px}
-.bar{height:100%;background:linear-gradient(90deg,#5aa6e8,#f2a6c7);width:0%;transition:width .25s}
-.question{background:#fff6df;border:2px dashed #f1d18b;border-radius:22px;text-align:center;padding:26px 12px;margin:16px 0}
+.progressrow{
+ display:flex;
+ justify-content:space-between;
+ gap:10px;
+ align-items:center;
+ font-weight:bold;
+}
+.track{
+ height:11px;
+ background:#e8eef5;
+ border-radius:20px;
+ overflow:hidden;
+ margin:12px 0 20px;
+}
+.bar{
+ height:100%;
+ background:linear-gradient(90deg,#5aa6e8,#f2a6c7);
+ width:0%;
+ transition:width .25s;
+}
+.question{
+ background:#fff6df;
+ border:2px dashed #f1d18b;
+ border-radius:22px;
+ text-align:center;
+ padding:26px 12px;
+ margin:16px 0;
+}
 .question small{color:#926b22;font-size:16px}
-.sum{font-size:clamp(38px,10vw,56px);font-weight:bold;color:#24527e;margin:12px 0}
-.answers{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
-.answer{background:#eaf4ff;color:#24527e;border:2px solid #d2e6fb;font-size:27px;padding:18px 5px}
+.sum{
+ font-size:clamp(38px,10vw,56px);
+ font-weight:bold;
+ color:#24527e;
+ margin:12px 0;
+}
+.answers{
+ display:grid;
+ grid-template-columns:repeat(3,1fr);
+ gap:10px;
+}
+.answer{
+ background:#eaf4ff;
+ color:#24527e;
+ border:2px solid #d2e6fb;
+ font-size:27px;
+ padding:18px 5px;
+}
 .answer:disabled{cursor:default;opacity:1}
-.answer.correct{background:#ddf6e8;border-color:#7bd3a2;color:#17643a}
-.answer.wrong{background:#ffe6eb;border-color:#f1a1b2;color:#9b2941}
-.feedback{text-align:center;border-radius:16px;background:#f5f8fc;padding:15px;margin-top:16px;font-size:18px;font-weight:bold}
+.answer.correct{
+ background:#ddf6e8;
+ border-color:#48bb78;
+ color:#17643a;
+}
+.answer.wrong{
+ background:#ffe1e6;
+ border-color:#ed7588;
+ color:#a51e39;
+}
+.feedback{
+ text-align:center;
+ border-radius:16px;
+ background:#f5f8fc;
+ padding:15px;
+ margin-top:16px;
+ font-size:19px;
+ font-weight:bold;
+ line-height:1.8;
+}
+.feedback.good{
+ background:#ddf6e8;
+ color:#17643a;
+ border:2px solid #83d5a4;
+}
+.feedback.bad{
+ background:#ffe6eb;
+ color:#a51e39;
+ border:2px solid #f1a1b2;
+}
 .hidden{display:none!important}
-.badge{background:#fff0c9;border-radius:30px;padding:8px 13px;color:#805b12}
-.result{text-align:center;background:linear-gradient(135deg,#fff6df,#fff0f7)}
-.score{font-size:48px;color:var(--navy);font-weight:bold;margin:12px}
-.certificate{border:3px double #e1b95e;border-radius:18px;padding:20px;background:#fffdf6}
-.secondary{background:#edf4fb;color:#24527e;width:100%;margin-top:10px}
-footer{text-align:center;color:#7890a8;font-size:13px;padding:12px}
-@media(max-width:420px){body{padding:10px}.card{padding:17px}.answer{font-size:23px;padding:16px 3px}}
+.badge{
+ background:#fff0c9;
+ border-radius:30px;
+ padding:8px 13px;
+ color:#805b12;
+}
+.result{
+ text-align:center;
+ background:linear-gradient(135deg,#fff6df,#fff0f7);
+}
+.score{
+ font-size:48px;
+ color:var(--navy);
+ font-weight:bold;
+ margin:12px;
+}
+.certificate{
+ border:3px double #e1b95e;
+ border-radius:18px;
+ padding:20px;
+ background:#fffdf6;
+}
+.secondary{
+ background:#edf4fb;
+ color:#24527e;
+ width:100%;
+ margin-top:10px;
+}
+footer{
+ text-align:center;
+ color:#7890a8;
+ font-size:13px;
+ padding:12px;
+}
+#confettiLayer{
+ position:fixed;
+ inset:0;
+ overflow:hidden;
+ pointer-events:none;
+ z-index:99999;
+}
+.confetti-piece{
+ position:absolute;
+ top:-20px;
+ animation:fall linear forwards;
+}
+@keyframes fall{
+ 0%{transform:translateY(0) rotate(0deg);opacity:1}
+ 100%{transform:translateY(110vh) rotate(850deg);opacity:0}
+}
+@media(max-width:420px){
+ body{padding:10px}
+ .card{padding:17px}
+ .answer{font-size:23px;padding:16px 3px}
+}
+@media print{
+ body{background:white}
+ #welcome,#game,footer,.no-print{display:none!important}
+ #result{display:block!important;box-shadow:none;border:0}
+}
 </style>
 </head>
+
 <body>
+
+<div id="confettiLayer"></div>
+
 <main>
+
+<!-- صفحة البداية -->
 <section class="card hero" id="welcome">
-  <div class="mascot">🧮🌟</div>
-  <h1>أبطال الجمع</h1>
-  <div class="sub">لعبة حقائق الجمع من ٠ إلى ١٠<br>نتعلم الصفر أولًا ثم نتدرّب على الجمع حتى ١٠!</div>
-  <p><strong>الصف: الأول الابتدائي / ب</strong><br><strong>إعداد: يارا خالد الاسمري</strong><br><strong>بإشراف المعلمة: حياة البيشي</strong></p>
-  <label for="student">اكتبي اسم الطالبة للبدء:</label>
-  <input id="student" value="" placeholder="اكتبي اسم الطالبة هنا" maxlength="40" autocomplete="name">
-  <button class="primary" id="start">ابدئي اللعب 🚀</button>
+ <div class="mascot">🧮🌟</div>
+ <h1>أبطال الجمع</h1>
+
+ <div class="sub">
+  لعبة حقائق الجمع من ٠ إلى ١٠<br>
+  نتعلم الصفر أولًا ثم نتدرّب على الجمع حتى ١٠!
+ </div>
+
+ <p>
+  <strong>الصف: الأول الابتدائي / ب</strong><br>
+  <strong>إعداد: يارا خالد الاسمري</strong><br>
+  <strong>بإشراف المعلمة: حياة البيشي</strong>
+ </p>
+
+ <label for="student">اكتبي اسم الطالبة للبدء:</label>
+ <input id="student" placeholder="اكتبي اسم الطالبة هنا"
+ maxlength="40" autocomplete="off">
+
+ <button class="primary" id="start">ابدئي اللعب 🚀</button>
 </section>
 
+<!-- صفحة الأسئلة -->
 <section class="card hidden" id="game">
-  <div class="progressrow"><span id="hello"></span><span class="badge">⭐ <span id="score">٠</span></span></div>
-  <div class="progressrow" style="margin-top:12px"><span id="questionNo">السؤال ١ من ١٠</span><span>حقائق الجمع</span></div>
-  <div class="track"><div class="bar" id="bar"></div></div>
-  <div class="question">
-    <small id="stageLabel">المرحلة الأولى: نتعرّف على الصفر</small>
-    <div class="sum" id="sum">٢ + ٣ = ؟</div>
-    <small>ما ناتج الجمع؟</small>
-  </div>
-  <div class="answers" id="answers"></div>
-  <div class="feedback hidden" id="feedback" aria-live="polite"></div>
-  <button class="primary hidden" id="next">السؤال التالي ←</button>
+
+ <div class="progressrow">
+  <span id="hello"></span>
+  <span class="badge">⭐ <span id="score">٠</span></span>
+ </div>
+
+ <div class="progressrow" style="margin-top:12px">
+  <span id="questionNo">السؤال ١ من ١٠</span>
+  <span>حقائق الجمع</span>
+ </div>
+
+ <div class="track">
+  <div class="bar" id="bar"></div>
+ </div>
+
+ <div class="question">
+  <small id="stageLabel">المرحلة الأولى: نتعرّف على الصفر</small>
+  <div class="sum" id="sum">٢ + ٣ = ؟</div>
+  <small>ما ناتج الجمع؟</small>
+ </div>
+
+ <div class="answers" id="answers"></div>
+
+ <div class="feedback hidden" id="feedback" aria-live="polite"></div>
+
+ <button class="primary hidden" id="next">السؤال التالي ←</button>
 </section>
 
+<!-- صفحة النتيجة والشهادة -->
 <section class="card result hidden" id="result">
-  <div class="mascot">🏆🎉</div>
-  <h1>أحسنتِ يا بطلة!</h1>
-  <div class="certificate">
-    <h2>شهادة إنجاز في حقائق الجمع</h2>
-    <p>تهنئ لعبة أبطال الجمع الطالبة</p>
-    <h2 id="finalName"></h2>
-    <p>لإكمالها تحدي حقائق الجمع للصف الأول الابتدائي / ب</p>
-    <div class="score" id="finalScore">٠ / ١٠</div>
-    <p id="message"></p>
-    <p><strong>بإشراف المعلمة: حياة البيشي</strong></p>
-  </div>
-  <button class="primary" id="again">العبِي مرة أخرى 🔄</button>
-  <button class="secondary" onclick="window.print()">طباعة الشهادة 🖨️</button>
+
+ <div class="mascot">🏆🎉</div>
+ <h1>أحسنتِ يا بطلة!</h1>
+
+ <div class="certificate">
+  <h2>شهادة إنجاز في حقائق الجمع</h2>
+
+  <p>تهنئ لعبة أبطال الجمع الطالبة</p>
+
+  <h2 id="finalName"></h2>
+
+  <p>
+   لإكمالها تحدي حقائق الجمع للصف الأول الابتدائي / ب
+  </p>
+
+  <div class="score" id="finalScore">٠ / ١٠</div>
+
+  <p id="message"></p>
+
+  <p><strong>بإشراف المعلمة: حياة البيشي</strong></p>
+
+  <h2>👑 أنتِ رائعة، وصلتي للنهاية! 🎉</h2>
+ </div>
+
+ <button class="primary" id="again">العبِي مرة أخرى 🔄</button>
+
+ <button class="secondary no-print" onclick="window.print()">
+  طباعة الشهادة 🖨️
+ </button>
 </section>
-<footer>لعبة تعليمية تفاعلية لحقائق الجمع من ٠ إلى ١٠ • الصف الأول الابتدائي / ب</footer>
+
+<footer>
+ لعبة تعليمية تفاعلية لحقائق الجمع من ٠ إلى ١٠
+ • الصف الأول الابتدائي / ب
+</footer>
+
 </main>
 
 <script>
 "use strict";
 
-const ar = n => String(n).replace(/\d/g, d => "٠١٢٣٤٥٦٧٨٩"[d]);
+const ar = n => String(n).replace(
+ /\d/g, d => "٠١٢٣٤٥٦٧٨٩"[d]
+);
 
 const questions = [
  [0,0],[0,5],[3,0],[1,2],[2,3],
@@ -100,61 +327,12 @@ const questions = [
 let index = 0;
 let score = 0;
 let studentName = "";
+let audioContext = null;
 
 const $ = id => document.getElementById(id);
 
-
-let voiceQueue = [];
-let voiceBusy = false;
-
+// اختيار صوت عربي متاح
 function teacherVoice(message) {
- if (!("speechSynthesis" in window)) return;
-
- window.speechSynthesis.cancel();
-
- voiceQueue = [message];
- voiceBusy = false;
-
- const speak = () => {
-  if (!voiceQueue.length) {
-   voiceBusy = false;
-   return;
-  }
-
-  voiceBusy = true;
-
-  const text = voiceQueue.shift();
-  const speech = new SpeechSynthesisUtterance(text);
-  const voices = window.speechSynthesis.getVoices();
-
-  const arabicVoice =
-   voices.find(v => v.lang.toLowerCase() === "ar-sa") ||
-   voices.find(v => v.lang.toLowerCase().startsWith("ar"));
-
-  if (arabicVoice) speech.voice = arabicVoice;
-
-  speech.lang = "ar-SA";
-  speech.rate = 0.85;
-  speech.pitch = 1.1;
-  speech.volume = 1;
-
-  speech.onend = () => {
-   voiceBusy = false;
-   speak();
-  };
-
-  speech.onerror = () => {
-   voiceBusy = false;
-  };
-
-  window.speechSynthesis.speak(speech);
- };
-
- speak();
-}
-
-
-
  if (!("speechSynthesis" in window)) return;
 
  window.speechSynthesis.cancel();
@@ -162,31 +340,123 @@ function teacherVoice(message) {
  const speech = new SpeechSynthesisUtterance(message);
  const voices = window.speechSynthesis.getVoices();
 
- const arabicVoice =
-  voices.find(v => v.lang.toLowerCase() === "ar-sa") ||
-  voices.find(v => v.lang.toLowerCase().startsWith("ar"));
+ const arabicVoices = voices.filter(v =>
+  v.lang.toLowerCase().startsWith("ar")
+ );
 
- if (arabicVoice) speech.voice = arabicVoice;
+ const femaleVoice = arabicVoices.find(v =>
+  /female|woman|laila|layla|amira|hoda|huda|noura|sara/i.test(v.name)
+ );
+
+ const selectedVoice = femaleVoice || arabicVoices[0];
+
+ if (selectedVoice) {
+  speech.voice = selectedVoice;
+ }
 
  speech.lang = "ar-SA";
  speech.rate = 0.88;
- speech.pitch = 1.15;
+ speech.pitch = 1.12;
  speech.volume = 1;
 
  window.speechSynthesis.speak(speech);
 }
 
+// نغمة الإجابة الخاطئة
+function wrongSound() {
+ try {
+  const Audio = window.AudioContext || window.webkitAudioContext;
+  if (!Audio) return;
+
+  if (!audioContext) audioContext = new Audio();
+  audioContext.resume();
+
+  const oscillator = audioContext.createOscillator();
+  const gain = audioContext.createGain();
+
+  oscillator.type = "triangle";
+
+  oscillator.frequency.setValueAtTime(
+   420, audioContext.currentTime
+  );
+
+  oscillator.frequency.exponentialRampToValueAtTime(
+   160, audioContext.currentTime + 0.45
+  );
+
+  gain.gain.setValueAtTime(
+   0.001, audioContext.currentTime
+  );
+
+  gain.gain.linearRampToValueAtTime(
+   0.22, audioContext.currentTime + 0.04
+  );
+
+  gain.gain.exponentialRampToValueAtTime(
+   0.001, audioContext.currentTime + 0.5
+  );
+
+  oscillator.connect(gain);
+  gain.connect(audioContext.destination);
+
+  oscillator.start();
+  oscillator.stop(audioContext.currentTime + 0.5);
+
+ } catch(e) {
+  console.log("تعذر تشغيل نغمة الخطأ");
+ }
+}
+
+// قصاصات الاحتفال
+function celebrate() {
+ const layer = $("confettiLayer");
+
+ const colors = [
+  "#ff4f87","#ffd43b","#45b96c",
+  "#4197ed","#a66be0","#ff944d"
+ ];
+
+ for (let i = 0; i < 65; i++) {
+  const piece = document.createElement("div");
+
+  piece.className = "confetti-piece";
+
+  piece.style.left = Math.random() * 100 + "%";
+  piece.style.backgroundColor =
+   colors[Math.floor(Math.random() * colors.length)];
+
+  piece.style.width = (6 + Math.random() * 7) + "px";
+  piece.style.height = (10 + Math.random() * 9) + "px";
+
+  piece.style.borderRadius =
+   Math.random() > 0.5 ? "50%" : "2px";
+
+  piece.style.animationDuration =
+   (2 + Math.random() * 1.5) + "s";
+
+  piece.style.animationDelay =
+   Math.random() * 0.5 + "s";
+
+  layer.appendChild(piece);
+
+  setTimeout(() => piece.remove(), 4500);
+ }
+}
+
+// خلط الإجابات
 function shuffle(array) {
  const result = [...array];
 
  for (let i = result.length - 1; i > 0; i--) {
   const j = Math.floor(Math.random() * (i + 1));
+
   [result[i], result[j]] = [result[j], result[i]];
  }
 
  return result;
 }
 
+// بدء اللعبة
 function start() {
  studentName = $("student").value.trim();
 
@@ -195,6 +465,20 @@ function start() {
   $("student").focus();
   return;
  }
+
+ if (window.speechSynthesis) {
+  window.speechSynthesis.cancel();
+ }
+
+ const Audio = window.AudioContext || window.webkitAudioContext;
+
+ if (Audio && !audioContext) {
+  try {
+   audioContext = new Audio();
+  } catch(e) {}
+ }
+
+ if (audioContext) audioContext.resume();
 
  index = 0;
  score = 0;
@@ -205,35 +489,44 @@ function start() {
 
  $("hello").textContent = "أهلًا " + studentName + " 🌷";
 
- teacherVoice("أهلًا يا بطلتي! يلا نبدأ التحدي! أنا متحمسة أشوف إبداعك!");
-
  render();
+
+ teacherVoice("أهلًا يا بطلتي! يلا نبدأ التحدي!");
 }
 
+// عرض السؤال
 function render() {
- const [a, b] = questions[index];
+ const [a,b] = questions[index];
  const correct = a + b;
 
  $("score").textContent = ar(score);
- $("questionNo").textContent = "السؤال " + ar(index + 1) + " من ١٠";
+
+ $("questionNo").textContent =
+  "السؤال " + ar(index + 1) + " من ١٠";
+
  $("bar").style.width = ((index + 1) * 10) + "%";
 
- $("sum").textContent = ar(a) + " + " + ar(b) + " = ؟";
+ $("sum").textContent =
+  ar(a) + " + " + ar(b) + " = ؟";
 
  $("stageLabel").textContent =
-  index < 3 ? "المرحلة الأولى: نتعرّف على الصفر" :
-  index < 7 ? "المرحلة الثانية: نجمع حتى ١٠" :
-  "المرحلة الثالثة: تحدّي الأبطال";
+  index < 3
+   ? "المرحلة الأولى: نتعرّف على الصفر"
+   : index < 7
+   ? "المرحلة الثانية: نجمع حتى ١٠"
+   : "المرحلة الثالثة: تحدّي الأبطال";
 
- $("feedback").classList.add("hidden");
+ $("feedback").className = "feedback hidden";
+ $("feedback").textContent = "";
+
  $("next").classList.add("hidden");
 
  const wrongAnswers = shuffle(
-  Array.from({length: 11}, (_, i) => i)
+  Array.from({length:11},(_,i)=>i)
    .filter(v => v !== correct)
- ).slice(0, 2);
+ ).slice(0,2);
 
- const options = shuffle([correct, ...wrongAnswers]);
+ const options = shuffle([correct,...wrongAnswers]);
 
  $("answers").innerHTML = "";
 
@@ -243,60 +536,71 @@ function render() {
   btn.className = "answer";
   btn.textContent = ar(value);
 
-  btn.addEventListener("click", () => choose(value, correct, btn));
+  btn.addEventListener("click", () => {
+   choose(value,correct,btn);
+  });
 
   $("answers").appendChild(btn);
  });
 }
 
-function choose(value, correct, btn) {
+// التحقق من الإجابة
+function choose(value,correct,btn) {
  const buttons = [...$("answers").children];
- buttons.forEach(button => button.disabled = true);
-
  const feedback = $("feedback");
 
+ // منع الضغط المتكرر على نفس الإجابة
+ if (btn.disabled) return;
+
  if (value === correct) {
+
   score++;
+
+  buttons.forEach(button => button.disabled = true);
+
   btn.classList.add("correct");
 
   const phrases = [
-   "أحسنتِ يا بطلتي! إجابة رائعة!",
-   "يا سلام عليكِ! شاطرة ومبدعة!",
-   "ممتازة يا صغيرتي! كفو عليكِ!",
-   "واو! إجابة صحيحة! استمري يا بطلة!",
-   "الله عليكِ! فخورة فيكِ يا حلوة!"
+   "رائعة! إجابة صحيحة!",
+   "مبدعة يا بطلتي!",
+   "أحسنتِ! أنتِ رائعة!",
+   "إجابة صحيحة! شاطرة!",
+   "ممتازة يا صغيرتي!"
   ];
 
-  const phrase = phrases[Math.floor(Math.random() * phrases.length)];
+  const phrase =
+   phrases[Math.floor(Math.random() * phrases.length)];
 
-  feedback.textContent = phrase + " ⭐🎉";
+  feedback.textContent = phrase + " 🎉🌟";
+  feedback.className = "feedback good";
+
+  $("score").textContent = ar(score);
+
+  celebrate();
   teacherVoice(phrase);
 
+  $("next").textContent =
+   index === 9 ? "عرض نتيجتي 🏆" : "السؤال التالي ←";
+
+  $("next").classList.remove("hidden");
+
  } else {
+
+  // الخطأ لا ينهي السؤال، تستطيع الطالبة المحاولة مرة أخرى
+  btn.disabled = true;
   btn.classList.add("wrong");
 
-  const right = buttons.find(
-   button => button.textContent === ar(correct)
-  );
-
-  if (right) right.classList.add("correct");
-
   feedback.textContent =
-   "محاولة جميلة! الإجابة الصحيحة هي " + ar(correct) + " 💗";
+   "إجابة خاطئة! حاولي مرة أخرى 💗";
 
-  teacherVoice("لا بأس يا صغيرتي! كلنا نتعلم. حاولي مرة ثانية، أنتِ تستطيعين!");
+  feedback.className = "feedback bad";
+
+  wrongSound();
+  teacherVoice("إجابة خاطئة، حاولي مرة أخرى يا بطلة.");
  }
-
- $("score").textContent = ar(score);
-
- feedback.classList.remove("hidden");
-
- $("next").textContent =
-  index === 9 ? "عرض نتيجتي 🏆" : "السؤال التالي ←";
-
- $("next").classList.remove("hidden");
 }
 
+// الانتقال للسؤال التالي
 function next() {
  if (index < 9) {
   index++;
@@ -304,44 +608,57 @@ function next() {
   return;
  }
 
+ finish();
+}
+
+// نهاية اللعبة
+function finish() {
  $("game").classList.add("hidden");
  $("result").classList.remove("hidden");
 
  $("finalName").textContent = studentName;
- $("finalScore").textContent = ar(score) + " / ١٠";
+
+ $("finalScore").textContent =
+  ar(score) + " / ١٠";
 
  let message;
 
  if (score === 10) {
   message = "يا سلام! الدرجة الكاملة! أنتِ بطلة الجمع!";
  } else if (score >= 7) {
-  message = "ممتازة يا بطلتي! مستواك رائع!";
+  message = "ممتازة يا بطلتي! واصلي إبداعك!";
  } else {
-  message = "أحسنتِ المحاولة! بالتدريب ستصبحين بطلة الجمع!";
+  message = "أحسنتِ المحاولة! أنتِ رائعة وتستطيعين التحسن!";
  }
 
  $("message").textContent = message;
- teacherVoice(message);
+
+ celebrate();
+
+ teacherVoice("أنتِ رائعة! وصلتي للنهاية! مبروك يا بطلة!");
 }
 
-$("start").addEventListener("click", start);
-$("next").addEventListener("click", next);
-
-$("again").addEventListener("click", function() {
- window.speechSynthesis.cancel();
+// إعادة اللعب
+function again() {
+ if (window.speechSynthesis) {
+  window.speechSynthesis.cancel();
+ }
 
  $("result").classList.add("hidden");
  $("welcome").classList.remove("hidden");
+
  $("student").value = studentName;
  $("student").focus();
-});
+}
 
-$("student").addEventListener("keydown", function(event) {
+$("start").addEventListener("click",start);
+$("next").addEventListener("click",next);
+$("again").addEventListener("click",again);
+
+$("student").addEventListener("keydown",function(event) {
  if (event.key === "Enter") start();
 });
+
 </script>
-
-
-
 </body>
 </html>
