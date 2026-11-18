@@ -108,7 +108,8 @@ function render(){
  $("score").textContent=ar(score);
  $("questionNo").textContent="السؤال "+ar(index+1)+" من ١٠";
  $("bar").style.width=((index+1)*10)+"%";
- $("sum").textContent=ar(a)+" + "+ar(b)+" = ؟";\n $("stageLabel").textContent=index<3?"المرحلة الأولى: نتعرّف على الصفر":index<7?"المرحلة الثانية: نجمع حتى ١٠":"المرحلة الثالثة: تحدّي الأبطال";
+ $("sum").textContent=ar(a)+" + "+ar(b)+" = ؟";
+$("stageLabel").textContent=index<3?"المرحلة الأولى: نتعرّف على الصفر":index<7?"المرحلة الثانية: نجمع حتى ١٠":"المرحلة الثالثة: تحدّي الأبطال";
  $("feedback").classList.add("hidden");$("next").classList.add("hidden");
  const options=shuffle([correct,...shuffle(Array.from({length:11},(_,i)=>i).filter(v=>v!==correct)).slice(0,2)]);
  $("answers").innerHTML="";
