@@ -274,15 +274,28 @@ body{background:white}
 const SOUNDS = {
   intro1: "f1.wav.wav",
   intro2: "AUDIO-2026-11-19-18-17-21.m4a",
-  correct: [
-    "c1.wav.wav",
-    "c2.wav.wav",
-    "c3.wav.wav",
-    "c4.wav.wav"
-  ],
   wrong: "w1.wav.wav",
   certificate: "AUDIO-2026-11-19-18-17-33.m4a"
 };
+
+const PRAISE_ITEMS = [
+  {
+    sound: "c1.wav.wav",
+    text: (name) => `يا سلام عليكي يا شطورة يا ${name}! 🌟`
+  },
+  {
+    sound: "c2.wav.wav",
+    text: (name) => `كفو والله يا ${name}، جبتيها صح! 🎉`
+  },
+  {
+    sound: "c3.wav.wav",
+    text: (name) => `الله عليكي يا بطلة يا ${name}، ويش هالشطارة! 👑`
+  },
+  {
+    sound: "c4.wav.wav",
+    text: (name) => `ما شاء الله عليكي يا ${name}، كل مرة تصيرين أشطر! ⭐`
+  }
+];
 
 const QUESTIONS = [
   { stage: "المرحلة الأولى: نتعرّف على الصفر", a: 0, b: 4, choices: [0, 4, 5] },
@@ -305,7 +318,7 @@ function toArabicNum(num) {
 const player = new Audio();
 let currentQ = 0;
 let score = 0;
-let correctCounter = 0;
+let praiseCounter = 0;
 let studentName = "صديقتنا";
 let answeredCorrectly = false;
 
@@ -317,10 +330,10 @@ function playAudio(src) {
   player.play().catch(() => {});
 }
 
-function nextCorrectSound() {
-  const file = SOUNDS.correct[correctCounter % SOUNDS.correct.length];
-  correctCounter++;
-  return file;
+function nextPraiseItem() {
+  const item = PRAISE_ITEMS[praiseCounter % PRAISE_ITEMS.length];
+  praiseCounter++;
+  return item;
 }
 
 function spawnConfetti() {
@@ -387,15 +400,16 @@ function checkAnswer(isRight, btn, answersBox) {
       b.disabled = true;
     });
 
-    feedbackEl.textContent = `أحسنتِ يا ${studentName}! إجابة صحيحة 🎉`;
+    const praise = nextPraiseItem();
+    feedbackEl.textContent = praise.text(studentName);
     feedbackEl.className = "feedback good";
+    playAudio(praise.sound);
 
-    playAudio(nextCorrectSound());
     nextBtn.textContent = currentQ === QUESTIONS.length - 1 ? "عرض الشهادة 🏆" : "السؤال التالي ←";
     nextBtn.classList.remove("hidden");
   } else {
     btn.classList.add("wrong");
-    feedbackEl.textContent = "حاولي مرة ثانية، إنتِ قدها! 💪";
+    feedbackEl.textContent = "حاولي مرة ثانية، إنتِ قدها والخطأ بداية النجاح! 💪";
     feedbackEl.className = "feedback bad";
     playAudio(SOUNDS.wrong);
   }
@@ -410,7 +424,7 @@ function finishQuiz() {
     `${toArabicNum(score)} / ${toArabicNum(QUESTIONS.length)}`;
 
   document.getElementById("message").textContent =
-    `أبدعتِ يا ${studentName} في حل جميع أسئلة الجمع وحصلتِ على ${toArabicNum(score)} نجوم.`;
+    `أبدعتِ يا ${studentName} ووصلتِ إلى النهاية وحصلتِ على ${toArabicNum(score)} نجوم.`;
 
   spawnConfetti();
   playAudio(SOUNDS.certificate);
@@ -422,7 +436,7 @@ function startQuiz() {
 
   currentQ = 0;
   score = 0;
-  correctCounter = 0;
+  praiseCounter = 0;
 
   document.getElementById("hello").textContent = `أهلاً يا ${studentName} 🌸`;
   document.getElementById("welcome").classList.add("hidden");
