@@ -361,21 +361,42 @@ function stopAllAudio(){
  }
 }
 
+function buildCandidateUrls(src){
+ const candidates=[src];
+ const encoded=src.replace(/ /g,"%20");
+ if(!candidates.includes(encoded))candidates.push(encoded);
+ const decoded=decodeURIComponent(src);
+ if(!candidates.includes(decoded))candidates.push(decoded);
+ return candidates;
+}
+
 function playClip(clip){
  if(!clip)return;
  stopAllAudio();
 
- const audio=new Audio(clip.src);
- currentAudio=audio;
+ const urls=buildCandidateUrls(clip.src);
+ let attempt=0;
 
- audio.play().catch(()=>{
-  if(currentAudio===audio)currentAudio=null;
-  fallbackSpeech(clip.text);
- });
+ function tryNext(){
+  if(attempt>=urls.length){
+   fallbackSpeech(clip.text);
+   return;
+  }
+  const targetUrl=urls[attempt++];
+  const audio=new Audio(targetUrl);
+  currentAudio=audio;
 
- audio.addEventListener("ended",()=>{
-  if(currentAudio===audio)currentAudio=null;
- });
+  audio.addEventListener("ended",()=>{
+   if(currentAudio===audio)currentAudio=null;
+  });
+
+  audio.play().catch(()=>{
+   if(currentAudio===audio)currentAudio=null;
+   tryNext();
+  });
+ }
+
+ tryNext();
 }
 
 function pickCorrectClip(){
