@@ -1,373 +1,452 @@
-<!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>أبطال الجمع</title>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@500;700;900&display=swap');
-
-        * {
-            box-sizing: border-box;
-            font-family: 'Tajawal', sans-serif;
-            margin: 0;
-            padding: 0;
-        }
-
-        body {
-            background: linear-gradient(135deg, #fdfbfb 0%, #ebedee 100%);
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
-            color: #2d3436;
-        }
-
-        .container {
-            background: #ffffff;
-            width: 100%;
-            max-width: 500px;
-            border-radius: 25px;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
-            padding: 30px 25px;
-            text-align: center;
-            border: 4px solid #74b9ff;
-        }
-
-        h1 {
-            color: #0984e3;
-            font-size: 2.2rem;
-            margin-bottom: 10px;
-            font-weight: 900;
-        }
-
-        .subtitle {
-            color: #636e72;
-            font-size: 1.1rem;
-            margin-bottom: 25px;
-        }
-
-        .input-group {
-            margin-bottom: 20px;
-        }
-
-        input[type="text"] {
-            width: 85%;
-            padding: 15px;
-            font-size: 1.2rem;
-            border: 2px solid #dfe6e9;
-            border-radius: 15px;
-            text-align: center;
-            outline: none;
-            transition: 0.3s;
-        }
-
-        input[type="text"]:focus {
-            border-color: #0984e3;
-        }
-
-        .btn {
-            background: #00b894;
-            color: white;
-            border: none;
-            padding: 15px 35px;
-            font-size: 1.3rem;
-            font-weight: 700;
-            border-radius: 15px;
-            cursor: pointer;
-            box-shadow: 0 5px 15px rgba(0, 184, 148, 0.3);
-            transition: transform 0.2s, background 0.2s;
-            width: 85%;
-        }
-
-        .btn:active {
-            transform: scale(0.96);
-        }
-
-        .btn-start {
-            background: #0984e3;
-            box-shadow: 0 5px 15px rgba(9, 132, 227, 0.3);
-        }
-
-        .hidden {
-            display: none;
-        }
-
-        .stats {
-            display: flex;
-            justify-content: space-between;
-            background: #f1f2f6;
-            padding: 12px 20px;
-            border-radius: 15px;
-            margin-bottom: 25px;
-            font-weight: 700;
-            font-size: 1.1rem;
-            color: #2f3542;
-        }
-
-        .question-box {
-            background: #ffeaa7;
-            padding: 30px 15px;
-            border-radius: 20px;
-            font-size: 3.2rem;
-            font-weight: 900;
-            color: #d63031;
-            margin-bottom: 25px;
-            letter-spacing: 3px;
-            direction: ltr;
-            box-shadow: inset 0 -4px 0 rgba(0,0,0,0.08);
-        }
-
-        .options {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 12px;
-            margin-bottom: 20px;
-        }
-
-        .option-btn {
-            background: #74b9ff;
-            color: white;
-            border: none;
-            padding: 20px 10px;
-            font-size: 2rem;
-            font-weight: 900;
-            border-radius: 18px;
-            cursor: pointer;
-            box-shadow: 0 5px 0 #0984e3;
-            transition: 0.15s;
-        }
-
-        .option-btn:active {
-            transform: translateY(4px);
-            box-shadow: 0 1px 0 #0984e3;
-        }
-
-        .feedback {
-            font-size: 1.3rem;
-            font-weight: 700;
-            min-height: 35px;
-            margin-top: 10px;
-        }
-
-        .correct-text { color: #00b894; }
-        .wrong-text { color: #d63031; }
-
-        /* شهادة التقدير */
-        .certificate {
-            border: 6px double #fdcb6e;
-            background: #fffdf7;
-            padding: 25px 15px;
-            border-radius: 20px;
-            margin-bottom: 20px;
-        }
-
-        .certificate h2 {
-            color: #e17055;
-            font-size: 1.8rem;
-            margin-bottom: 15px;
-        }
-
-        .student-name {
-            font-size: 2rem;
-            color: #0984e3;
-            font-weight: 900;
-            margin: 15px 0;
-            text-decoration: underline wavy #fdcb6e;
-        }
-
-        .teacher-sig {
-            margin-top: 25px;
-            font-weight: 700;
-            color: #2d3436;
-            font-size: 1.1rem;
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#397fc5">
+<title>أميرات الجمع</title>
+<style>
+:root{
+--blue:#397fc5;
+--navy:#24527e;
+--pink:#f5a8c7;
+--ink:#24364b;
+}
+*{box-sizing:border-box}
+body{
+margin:0;
+font-family:Tahoma,Arial,sans-serif;
+background:linear-gradient(145deg,#eef7ff,#fff3f8);
+color:var(--ink);
+min-height:100vh;
+padding:18px;
+}
+main{max-width:620px;margin:auto}
+.card{
+background:white;
+border:2px solid #e3effb;
+border-radius:26px;
+padding:22px;
+box-shadow:0 12px 32px #31577b18;
+margin:12px 0;
+}
+.hero{
+text-align:center;
+background:linear-gradient(135deg,#e6f3ff,#fff0f6);
+}
+h1{
+color:var(--navy);
+font-size:clamp(27px,6vw,38px);
+margin:8px 0;
+}
+h2{color:var(--navy)}
+.sub{color:#5c7590;font-size:17px;line-height:1.9}
+.mascot{font-size:54px}
+label{display:block;font-weight:bold;margin:16px 0 8px}
+input{
+width:100%;
+padding:15px;
+border:2px solid #cfe1f4;
+border-radius:14px;
+font:inherit;
+font-size:18px;
+}
+button{
+border:0;
+border-radius:15px;
+padding:14px 18px;
+font:inherit;
+font-size:18px;
+font-weight:bold;
+cursor:pointer;
+}
+.primary{
+background:var(--blue);
+color:white;
+width:100%;
+margin-top:16px;
+}
+.progressrow{
+display:flex;
+justify-content:space-between;
+gap:10px;
+align-items:center;
+font-weight:bold;
+}
+.track{
+height:11px;
+background:#e8eef5;
+border-radius:20px;
+overflow:hidden;
+margin:12px 0 20px;
+}
+.bar{
+height:100%;
+background:linear-gradient(90deg,#5aa6e8,#f2a6c7);
+width:0%;
+transition:width .25s;
+}
+.question{
+background:#fff6df;
+border:2px dashed #f1d18b;
+border-radius:22px;
+text-align:center;
+padding:26px 12px;
+margin:16px 0;
+}
+.question small{color:#926b22;font-size:16px}
+.sum{
+font-size:clamp(38px,10vw,56px);
+font-weight:bold;
+color:#24527e;
+margin:12px 0;
+}
+.answers{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:10px;
+}
+.answer{
+background:#eaf4ff;
+color:#24527e;
+border:2px solid #d2e6fb;
+font-size:27px;
+padding:18px 5px;
+}
+.answer:disabled{opacity:1}
+.answer.correct{
+background:#ddf6e8;
+border-color:#48bb78;
+color:#17643a;
+}
+.answer.wrong{
+background:#ffe1e6;
+border-color:#ed7588;
+color:#a51e39;
+}
+.feedback{
+text-align:center;
+border-radius:16px;
+background:#f5f8fc;
+padding:15px;
+margin-top:16px;
+font-size:19px;
+font-weight:bold;
+line-height:1.8;
+}
+.feedback.good{
+background:#ddf6e8;
+color:#17643a;
+border:2px solid #83d5a4;
+}
+.feedback.bad{
+background:#ffe6eb;
+color:#a51e39;
+border:2px solid #f1a1b2;
+}
+.hidden{display:none!important}
+.badge{
+background:#fff0c9;
+border-radius:30px;
+padding:8px 13px;
+color:#805b12;
+}
+.result{
+text-align:center;
+background:linear-gradient(135deg,#fff6df,#fff0f7);
+}
+.score{
+font-size:48px;
+color:var(--navy);
+font-weight:bold;
+margin:12px;
+}
+.certificate{
+border:3px double #e1b95e;
+border-radius:18px;
+padding:20px;
+background:#fffdf6;
+}
+.secondary{
+background:#edf4fb;
+color:#24527e;
+width:100%;
+margin-top:10px;
+}
+footer{
+text-align:center;
+color:#7890a8;
+font-size:13px;
+padding:12px;
+}
+#confettiLayer{
+position:fixed;
+inset:0;
+overflow:hidden;
+pointer-events:none;
+z-index:99999;
+}
+.confetti-piece{
+position:absolute;
+top:-20px;
+animation:fall linear forwards;
+}
+@keyframes fall{
+0%{transform:translateY(0) rotate(0);opacity:1}
+100%{transform:translateY(110vh) rotate(850deg);opacity:0}
+}
+@media(max-width:420px){
+body{padding:10px}
+.card{padding:17px}
+.answer{font-size:23px;padding:16px 3px}
+}
+@media print{
+body{background:white}
+#welcome,#game,footer,.no-print{display:none!important}
+#result{display:block!important;box-shadow:none;border:0}
+}
+</style>
 </head>
 <body>
+<div id="confettiLayer"></div>
+<main>
 
-<div class="container">
-    <!-- شاشة البداية -->
-    <div id="start-screen">
-        <h1>🌟 أبطال الجمع 🌟</h1>
-        <p class="subtitle">مرحباً صديقاتي! اكتبوا اسمكم لنبدأ اللعب</p>
-        <div class="input-group">
-            <input type="text" id="player-name" placeholder="اكتبي اسمك هنا يا بطلة...">
-        </div>
-        <button class="btn btn-start" onclick="startGame()">ابدأ اللعب 🚀</button>
-    </div>
-
-    <!-- شاشة اللعب -->
-    <div id="game-screen" class="hidden">
-        <div class="stats">
-            <span>السؤال: <span id="q-number">1</span> / 10</span>
-            <span>النقاط: <span id="score">0</span> ⭐</span>
-        </div>
-
-        <div class="question-box" id="question-text">2 + 3 = ?</div>
-
-        <div class="options" id="options-container"></div>
-
-        <div class="feedback" id="feedback-msg"></div>
-    </div>
-
-    <!-- شاشة النهاية والشهادة -->
-    <div id="end-screen" class="hidden">
-        <div class="certificate">
-            <h2>🏆 شهادة شكر وتقدير 🏆</h2>
-            <p>تُمنح هذه الشهادة للبطلة المتميزة:</p>
-            <div class="student-name" id="cert-name">البطلة</div>
-            <p>لإتقانها مهارة الجمع وحصولها على <span id="final-score">10</span> من 10 في تحدي أبطال الجمع!</p>
-            <div class="teacher-sig">إشراف المعلمة: حياة البيشي 🌷</div>
-        </div>
-        <button class="btn" onclick="resetGame()">العب مرة أخرى 🔄</button>
-    </div>
+<section class="card hero" id="welcome">
+<div class="mascot">👑🧮🌸</div>
+<h1>أميرات الجمع</h1>
+<div class="sub">
+هيا نلعب مع يارا! 🌷<br>
+لعبة حقائق الجمع من ٠ إلى ١٠<br>
+نتعلم الصفر أولًا ثم نتدرّب على الجمع حتى ١٠!
 </div>
+<p>
+<strong>اسم الطالبة: يارا خالد الاسمري</strong><br>
+<strong>اسم المعلمة: حياة البيشي</strong><br>
+<strong>الصف: الأول الابتدائي / ب</strong>
+</p>
+<label for="student">اكتبي اسم الطالبة للبدء:</label>
+<input id="student" placeholder="اكتبي اسم الطالبة هنا" maxlength="40">
+<button class="primary" id="start">ابدئي اللعب 🚀</button>
+</section>
+
+<section class="card hidden" id="game">
+<div class="progressrow">
+<span id="hello"></span>
+<span class="badge">⭐ <span id="score">٠</span></span>
+</div>
+<div class="progressrow" style="margin-top:12px">
+<span id="questionNo">السؤال ١ من ١٠</span>
+<span>حقائق الجمع</span>
+</div>
+<div class="track">
+<div class="bar" id="bar"></div>
+</div>
+<div class="question">
+<small id="stageLabel">المرحلة الأولى: نتعرّف على الصفر</small>
+<div class="sum" id="sum">٢ + ٣ = ؟</div>
+<small>ما ناتج الجمع؟</small>
+</div>
+<div class="answers" id="answers"></div>
+<div class="feedback hidden" id="feedback" aria-live="polite"></div>
+<button class="primary hidden" id="next">السؤال التالي ←</button>
+</section>
+
+<section class="card result hidden" id="result">
+<div class="mascot">👑🎉🏆</div>
+<h1>مبدعة يا أميرة الجمع!</h1>
+<div class="certificate">
+<h2>شهادة إنجاز في حقائق الجمع</h2>
+<p>تهنئ لعبة أميرات الجمع الطالبة</p>
+<h2 id="finalName"></h2>
+<p>لإكمالها تحدي حقائق الجمع للصف الأول الابتدائي / ب</p>
+<div class="score" id="finalScore">٠ / ١٠</div>
+<p id="message"></p>
+<p><strong>بإشراف المعلمة: حياة البيشي</strong></p>
+<h2>👑 أنتِ رائعة! وصلتي للنهاية! 🎉</h2>
+</div>
+<button class="primary" id="again">العبِي مرة أخرى 🔄</button>
+<button class="secondary no-print" onclick="window.print()">طباعة الشهادة 🖨️</button>
+</section>
+
+<footer>لعبة أميرات الجمع التعليمية التفاعلية • الصف الأول الابتدائي / ب</footer>
+</main>
 
 <script>
-    // 1. تعريف الملفات الصوتية (تأكدي من تطابق أسماء الملفات في مجلد المشروع)
-    const sounds = {
-        welcome: new Audio('welcome.wav'),       // "مرحبا صديقاتي شرايكم نجرب نلعب مع يارا"
-        wrong: new Audio('wrong.wav'),           // "حاولي مرة ثانية انتي قدها والخطأ بداية النجاح"
-        correctList: [
-            new Audio('correct1.wav'),           // "يا سلام عليك يا شطورة"
-            new Audio('correct2.wav'),           // "الله عليك يا بطلة وش هالشطارة"
-            new Audio('correct3.wav'),           // "ما شاء الله عليك كل مرة تصيرين أشطر"
-            new Audio('correct4.wav')            // "كفو والله جبتيها صح"
-        ]
-    };
+const SOUNDS = {
+  intro1: "f1.wav.wav",
+  intro2: "AUDIO-2026-11-19-18-17-21.m4a",
+  correct: [
+    "c1.wav.wav",
+    "c2.wav.wav",
+    "c3.wav.wav",
+    "c4.wav.wav"
+  ],
+  wrong: "w1.wav.wav",
+  certificate: "AUDIO-2026-11-19-18-17-33.m4a"
+};
 
-    let currentQuestion = 1;
-    const totalQuestions = 10;
-    let score = 0;
-    let correctAnswer = 0;
-    let playerName = "";
-    let canAnswer = true;
+const QUESTIONS = [
+  { stage: "المرحلة الأولى: نتعرّف على الصفر", a: 0, b: 4, choices: [0, 4, 5] },
+  { stage: "المرحلة الأولى: نتعرّف على الصفر", a: 7, b: 0, choices: [0, 7, 8] },
+  { stage: "المرحلة الأولى: نتعرّف على الصفر", a: 0, b: 9, choices: [8, 0, 9] },
+  { stage: "المرحلة الأولى: نتعرّف على الصفر", a: 5, b: 0, choices: [5, 0, 6] },
+  { stage: "المرحلة الثانية: الجمع حتى ١٠", a: 2, b: 3, choices: [4, 5, 6] },
+  { stage: "المرحلة الثانية: الجمع حتى ١٠", a: 4, b: 3, choices: [6, 7, 8] },
+  { stage: "المرحلة الثانية: الجمع حتى ١٠", a: 5, b: 4, choices: [8, 9, 10] },
+  { stage: "المرحلة الثانية: الجمع حتى ١٠", a: 6, b: 2, choices: [7, 8, 9] },
+  { stage: "المرحلة الثانية: الجمع حتى ١٠", a: 7, b: 3, choices: [9, 10, 8] },
+  { stage: "المرحلة الثانية: الجمع حتى ١٠", a: 6, b: 4, choices: [9, 11, 10] }
+];
 
-    // دالة لإيقاف أي صوت شغال قبل تشغيل الصوت الجديد حتى لا تتداخل الأصوات
-    function stopAllSounds() {
-        sounds.welcome.pause();
-        sounds.welcome.currentTime = 0;
-        sounds.wrong.pause();
-        sounds.wrong.currentTime = 0;
-        sounds.correctList.forEach(audio => {
-            audio.pause();
-            audio.currentTime = 0;
-        });
-    }
+const ARABIC_DIGITS = ["٠", "١", "٢", "٣", "٤", "٥", "٦", "٧", "٨", "٩"];
+function toArabicNum(num) {
+  return String(num).replace(/\d/g, (d) => ARABIC_DIGITS[Number(d)]);
+}
 
-    function playSound(audioObj) {
-        stopAllSounds();
-        audioObj.play().catch(e => console.log("تنبيه تشغيل الصوت:", e));
-    }
+const player = new Audio();
+let currentQ = 0;
+let score = 0;
+let correctCounter = 0;
+let studentName = "صديقتنا";
+let answeredCorrectly = false;
 
-    function startGame() {
-        const nameInput = document.getElementById('player-name').value.trim();
-        playerName = nameInput !== "" ? nameInput : "البطلة";
+function playAudio(src) {
+  if (!src) return;
+  player.pause();
+  player.currentTime = 0;
+  player.src = src;
+  player.play().catch(() => {});
+}
 
-        // تشغيل صوت الترحيب عند الضغط على ابدأ اللعب
-        playSound(sounds.welcome);
+function nextCorrectSound() {
+  const file = SOUNDS.correct[correctCounter % SOUNDS.correct.length];
+  correctCounter++;
+  return file;
+}
 
-        document.getElementById('start-screen').classList.add('hidden');
-        document.getElementById('game-screen').classList.remove('hidden');
+function spawnConfetti() {
+  const layer = document.getElementById("confettiLayer");
+  layer.innerHTML = "";
+  const symbols = ["🎉", "⭐", "🌸", "👑", "✨"];
+  for (let i = 0; i < 28; i++) {
+    const piece = document.createElement("span");
+    piece.className = "confetti-piece";
+    piece.textContent = symbols[i % symbols.length];
+    piece.style.left = `${Math.random() * 100}%`;
+    piece.style.fontSize = `${18 + Math.random() * 14}px`;
+    piece.style.animationDuration = `${2.2 + Math.random() * 1.8}s`;
+    piece.style.animationDelay = `${Math.random() * 0.6}s`;
+    layer.appendChild(piece);
+  }
+}
 
-        currentQuestion = 1;
-        score = 0;
-        updateStats();
-        generateQuestion();
-    }
+function showQuestion() {
+  answeredCorrectly = false;
+  const q = QUESTIONS[currentQ];
+  const answer = q.a + q.b;
 
-    function generateQuestion() {
-        canAnswer = true;
-        document.getElementById('feedback-msg').textContent = "";
+  document.getElementById("questionNo").textContent =
+    `السؤال ${toArabicNum(currentQ + 1)} من ${toArabicNum(QUESTIONS.length)}`;
+  document.getElementById("score").textContent = toArabicNum(score);
+  document.getElementById("bar").style.width = `${((currentQ + 1) / QUESTIONS.length) * 100}%`;
+  document.getElementById("stageLabel").textContent = q.stage;
+  document.getElementById("sum").textContent = `${toArabicNum(q.a)} + ${toArabicNum(q.b)} = ؟`;
 
-        const num1 = Math.floor(Math.random() * 9) + 1;
-        const num2 = Math.floor(Math.random() * 9) + 1;
-        correctAnswer = num1 + num2;
+  const feedbackEl = document.getElementById("feedback");
+  feedbackEl.className = "feedback hidden";
+  feedbackEl.textContent = "";
 
-        document.getElementById('question-text').textContent = `${num1} + ${num2} = ?`;
+  const nextBtn = document.getElementById("next");
+  nextBtn.classList.add("hidden");
 
-        let options = [correctAnswer];
-        while (options.length < 3) {
-            let wrong = correctAnswer + (Math.floor(Math.random() * 5) - 2);
-            if (wrong > 0 && !options.includes(wrong)) {
-                options.push(wrong);
-            }
-        }
+  const answersBox = document.getElementById("answers");
+  answersBox.innerHTML = "";
 
-        // خلط الخيارات عشوائياً
-        options.sort(() => Math.random() - 0.5);
+  q.choices.forEach((choice) => {
+    const btn = document.createElement("button");
+    btn.type = "button";
+    btn.className = "answer";
+    btn.textContent = toArabicNum(choice);
+    btn.onclick = () => checkAnswer(choice === answer, btn, answersBox);
+    answersBox.appendChild(btn);
+  });
+}
 
-        const optionsContainer = document.getElementById('options-container');
-        optionsContainer.innerHTML = "";
+function checkAnswer(isRight, btn, answersBox) {
+  if (answeredCorrectly) return;
 
-        options.forEach(opt => {
-            const btn = document.createElement('button');
-            btn.className = 'option-btn';
-            btn.textContent = opt;
-            btn.onclick = () => checkAnswer(opt);
-            optionsContainer.appendChild(btn);
-        });
-    }
+  const feedbackEl = document.getElementById("feedback");
+  const nextBtn = document.getElementById("next");
 
-    function checkAnswer(selected) {
-        if (!canAnswer) return;
+  if (isRight) {
+    answeredCorrectly = true;
+    score++;
+    document.getElementById("score").textContent = toArabicNum(score);
+    btn.classList.add("correct");
 
-        const feedback = document.getElementById('feedback-msg');
+    answersBox.querySelectorAll("button").forEach((b) => {
+      b.disabled = true;
+    });
 
-        if (selected === correctAnswer) {
-            canAnswer = false;
-            score++;
-            updateStats();
-            feedback.textContent = "أحسنتِ! إجابة صحيحة 🌟";
-            feedback.className = "feedback correct-text";
+    feedbackEl.textContent = `أحسنتِ يا ${studentName}! إجابة صحيحة 🎉`;
+    feedbackEl.className = "feedback good";
 
-            // اختيار صوت تشجيعي عشوائي من الأصوات الأربعة للإجابة الصحيحة
-            const randomIndex = Math.floor(Math.random() * sounds.correctList.length);
-            playSound(sounds.correctList[randomIndex]);
+    playAudio(nextCorrectSound());
+    nextBtn.textContent = currentQ === QUESTIONS.length - 1 ? "عرض الشهادة 🏆" : "السؤال التالي ←";
+    nextBtn.classList.remove("hidden");
+  } else {
+    btn.classList.add("wrong");
+    feedbackEl.textContent = "حاولي مرة ثانية، إنتِ قدها! 💪";
+    feedbackEl.className = "feedback bad";
+    playAudio(SOUNDS.wrong);
+  }
+}
 
-            setTimeout(() => {
-                if (currentQuestion < totalQuestions) {
-                    currentQuestion++;
-                    updateStats();
-                    generateQuestion();
-                } else {
-                    endGame();
-                }
-            }, 2200); // مهلة لسماع الصوت قبل الانتقال للسؤال التالي
-        } else {
-            feedback.textContent = "حاولي مرة أخرى يا بطلة 💪";
-            feedback.className = "feedback wrong-text";
+function finishQuiz() {
+  document.getElementById("game").classList.add("hidden");
+  document.getElementById("result").classList.remove("hidden");
 
-            // تشغيل صوت التشجيع عند الخطأ
-            playSound(sounds.wrong);
-        }
-    }
+  document.getElementById("finalName").textContent = studentName;
+  document.getElementById("finalScore").textContent =
+    `${toArabicNum(score)} / ${toArabicNum(QUESTIONS.length)}`;
 
-    function updateStats() {
-        document.getElementById('q-number').textContent = currentQuestion;
-        document.getElementById('score').textContent = score;
-    }
+  document.getElementById("message").textContent =
+    `أبدعتِ يا ${studentName} في حل جميع أسئلة الجمع وحصلتِ على ${toArabicNum(score)} نجوم.`;
 
-    function endGame() {
-        document.getElementById('game-screen').classList.add('hidden');
-        document.getElementById('end-screen').classList.remove('hidden');
+  spawnConfetti();
+  playAudio(SOUNDS.certificate);
+}
 
-        document.getElementById('cert-name').textContent = playerName;
-        document.getElementById('final-score').textContent = score;
+function startQuiz() {
+  const inputVal = document.getElementById("student").value.trim();
+  studentName = inputVal || "صديقتنا";
 
-        // تشغيل صوت تشجيعي عند ظهور الشهادة
-        const randomIndex = Math.floor(Math.random() * sounds.correctList.length);
-        playSound(sounds.correctList[randomIndex]);
-    }
+  currentQ = 0;
+  score = 0;
+  correctCounter = 0;
 
-    function resetGame() {
-        stopAllSounds();
-        document.getElementById('end-screen').classList.add('hidden');
-        document.getElementById('start-screen').classList.remove('hidden');
-    }
+  document.getElementById("hello").textContent = `أهلاً يا ${studentName} 🌸`;
+  document.getElementById("welcome").classList.add("hidden");
+  document.getElementById("result").classList.add("hidden");
+  document.getElementById("game").classList.remove("hidden");
+
+  playAudio(SOUNDS.intro2);
+  showQuestion();
+}
+
+document.getElementById("start").addEventListener("click", startQuiz);
+
+document.getElementById("next").addEventListener("click", () => {
+  currentQ++;
+  if (currentQ < QUESTIONS.length) {
+    showQuestion();
+  } else {
+    finishQuiz();
+  }
+});
+
+document.getElementById("again").addEventListener("click", startQuiz);
+
+playAudio(SOUNDS.intro1);
 </script>
-
 </body>
 </html>
