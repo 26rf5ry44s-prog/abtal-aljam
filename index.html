@@ -1,217 +1,373 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>أميرات الجمع</title>
-  <style>
-    * {
-      box-sizing: border-box;
-      font-family: system-ui, -apple-system, "Segoe UI", Tahoma, Arial, sans-serif;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>أبطال الجمع</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@500;700;900&display=swap');
 
-    body {
-      margin: 0;
-      min-height: 100vh;
-      background: linear-gradient(135deg, #ffe6f2 0%, #fff4e6 50%, #e8f5ff 100%);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 16px;
-      color: #2d2235;
-    }
+        * {
+            box-sizing: border-box;
+            font-family: 'Tajawal', sans-serif;
+            margin: 0;
+            padding: 0;
+        }
 
-    .game-card {
-      width: 100%;
-      max-width: 480px;
-      background: #ffffff;
-      border-radius: 28px;
-      padding: 24px 20px;
-      box-shadow: 0 14px 35px rgba(130, 60, 130, 0.14);
-      border: 3px solid #ffd1e8;
-      text-align: center;
-    }
+        body {
+            background: linear-gradient(135deg, #fdfbfb 0%, #ebedee 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            color: #2d3436;
+        }
 
-    .badge {
-      display: inline-block;
-      background: #fff0f7;
-      color: #c21872;
-      font-weight: 700;
-      font-size: 0.9rem;
-      padding: 6px 14px;
-      border-radius: 999px;
-      margin-bottom: 10px;
-    }
+        .container {
+            background: #ffffff;
+            width: 100%;
+            max-width: 500px;
+            border-radius: 25px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            padding: 30px 25px;
+            text-align: center;
+            border: 4px solid #74b9ff;
+        }
 
-    h1 {
-      margin: 4px 0 8px;
-      font-size: 1.85rem;
-      color: #7b1fa2;
-    }
+        h1 {
+            color: #0984e3;
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+            font-weight: 900;
+        }
 
-    .subtitle {
-      margin: 0 0 18px;
-      font-size: 1rem;
-      color: #5a4b66;
-      line-height: 1.5;
-    }
+        .subtitle {
+            color: #636e72;
+            font-size: 1.1rem;
+            margin-bottom: 25px;
+        }
 
-    .top-bar {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 8px;
-      background: #faf5ff;
-      padding: 10px 14px;
-      border-radius: 16px;
-      margin-bottom: 18px;
-      font-weight: 700;
-      font-size: 0.95rem;
-    }
+        .input-group {
+            margin-bottom: 20px;
+        }
 
-    .question-box {
-      background: linear-gradient(145deg, #fff9fc, #f4f9ff);
-      border: 2px dashed #e2b8f5;
-      border-radius: 22px;
-      padding: 22px 14px;
-      margin-bottom: 18px;
-    }
+        input[type="text"] {
+            width: 85%;
+            padding: 15px;
+            font-size: 1.2rem;
+            border: 2px solid #dfe6e9;
+            border-radius: 15px;
+            text-align: center;
+            outline: none;
+            transition: 0.3s;
+        }
 
-    .question-label {
-      font-size: 0.95rem;
-      color: #7a688a;
-      margin-bottom: 8px;
-    }
+        input[type="text"]:focus {
+            border-color: #0984e3;
+        }
 
-    .equation {
-      font-size: 2.5rem;
-      font-weight: 800;
-      color: #4a148c;
-      direction: ltr;
-      display: inline-block;
-      letter-spacing: 2px;
-    }
+        .btn {
+            background: #00b894;
+            color: white;
+            border: none;
+            padding: 15px 35px;
+            font-size: 1.3rem;
+            font-weight: 700;
+            border-radius: 15px;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0, 184, 148, 0.3);
+            transition: transform 0.2s, background 0.2s;
+            width: 85%;
+        }
 
-    .options-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 12px;
-      margin-bottom: 14px;
-    }
+        .btn:active {
+            transform: scale(0.96);
+        }
 
-    button {
-      border: none;
-      border-radius: 18px;
-      padding: 15px 12px;
-      font-size: 1.25rem;
-      font-weight: 800;
-      cursor: pointer;
-      transition: transform 0.14s ease, box-shadow 0.14s ease, background 0.2s ease;
-    }
+        .btn-start {
+            background: #0984e3;
+            box-shadow: 0 5px 15px rgba(9, 132, 227, 0.3);
+        }
 
-    button:active {
-      transform: scale(0.96);
-    }
+        .hidden {
+            display: none;
+        }
 
-    .option-btn {
-      background: #f3e5f5;
-      color: #4a148c;
-      box-shadow: 0 4px 0 #d1a3dc;
-    }
+        .stats {
+            display: flex;
+            justify-content: space-between;
+            background: #f1f2f6;
+            padding: 12px 20px;
+            border-radius: 15px;
+            margin-bottom: 25px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: #2f3542;
+        }
 
-    .option-btn:hover {
-      background: #ebd3f0;
-    }
+        .question-box {
+            background: #ffeaa7;
+            padding: 30px 15px;
+            border-radius: 20px;
+            font-size: 3.2rem;
+            font-weight: 900;
+            color: #d63031;
+            margin-bottom: 25px;
+            letter-spacing: 3px;
+            direction: ltr;
+            box-shadow: inset 0 -4px 0 rgba(0,0,0,0.08);
+        }
 
-    .option-btn.correct {
-      background: #d8f8e1;
-      color: #136f36;
-      box-shadow: 0 4px 0 #7fd196;
-    }
+        .options {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            margin-bottom: 20px;
+        }
 
-    .option-btn.wrong {
-      background: #ffe0e6;
-      color: #a61b38;
-      box-shadow: 0 4px 0 #f294a8;
-    }
+        .option-btn {
+            background: #74b9ff;
+            color: white;
+            border: none;
+            padding: 20px 10px;
+            font-size: 2rem;
+            font-weight: 900;
+            border-radius: 18px;
+            cursor: pointer;
+            box-shadow: 0 5px 0 #0984e3;
+            transition: 0.15s;
+        }
 
-    .primary-btn {
-      width: 100%;
-      background: linear-gradient(135deg, #e91e8c, #9c27b0);
-      color: #fff;
-      font-size: 1.15rem;
-      padding: 15px 18px;
-      box-shadow: 0 5px 0 #6a1b7a;
-    }
+        .option-btn:active {
+            transform: translateY(4px);
+            box-shadow: 0 1px 0 #0984e3;
+        }
 
-    .secondary-btn {
-      background: #fff3e0;
-      color: #b25000;
-      font-size: 0.95rem;
-      padding: 10px 14px;
-      border-radius: 14px;
-      box-shadow: 0 3px 0 #f0c282;
-    }
+        .feedback {
+            font-size: 1.3rem;
+            font-weight: 700;
+            min-height: 35px;
+            margin-top: 10px;
+        }
 
-    .feedback {
-      min-height: 32px;
-      font-weight: 700;
-      font-size: 1.05rem;
-      margin: 10px 0 14px;
-      line-height: 1.5;
-    }
+        .correct-text { color: #00b894; }
+        .wrong-text { color: #d63031; }
 
-    .feedback.good {
-      color: #15733a;
-    }
+        /* شهادة التقدير */
+        .certificate {
+            border: 6px double #fdcb6e;
+            background: #fffdf7;
+            padding: 25px 15px;
+            border-radius: 20px;
+            margin-bottom: 20px;
+        }
 
-    .feedback.try-again {
-      color: #b81d3b;
-    }
+        .certificate h2 {
+            color: #e17055;
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+        }
 
-    .certificate-box {
-      background: linear-gradient(145deg, #fffdf0, #fff3fa);
-      border: 3px solid #f6c453;
-      border-radius: 24px;
-      padding: 24px 18px;
-      margin-bottom: 16px;
-    }
+        .student-name {
+            font-size: 2rem;
+            color: #0984e3;
+            font-weight: 900;
+            margin: 15px 0;
+            text-decoration: underline wavy #fdcb6e;
+        }
 
-    .trophy {
-      font-size: 3.2rem;
-      margin-bottom: 8px;
-    }
-
-    .cert-title {
-      font-size: 1.5rem;
-      font-weight: 800;
-      color: #9c4a00;
-      margin: 0 0 8px;
-    }
-
-    .cert-text {
-      color: #4d3c5c;
-      line-height: 1.6;
-      margin: 0 0 14px;
-    }
-
-    .hidden {
-      display: none;
-    }
-  </style>
+        .teacher-sig {
+            margin-top: 25px;
+            font-weight: 700;
+            color: #2d3436;
+            font-size: 1.1rem;
+        }
+    </style>
 </head>
 <body>
-  <main class="game-card">
-    <div class="badge">✨ عالم الحساب والمرح ✨</div>
-    <h1>أميرات الجمع</h1>
 
+<div class="container">
     <!-- شاشة البداية -->
-    <section id="startScreen">
-      <p class="subtitle">
-        مرحباً صديقاتي! هيا نجمع الأعداد بذكاء وحماس ونحصل على شهادة التميز في النهاية.
-      </p>
-      <div style="display: flex; gap: 10px; justify-content: center; margin-bottom: 16px; flex-wrap: wrap;">
-        <button type="button" class="secondary-btn" onclick="playIntro1()">👋 ترحيب يارا</button>
-        <button type="button" class="secondary-btn" onclick="playIntro2()">📣 حماس البداية</button>
-      </div>
-      <button type="button" class="primary-btn" onclick="startGame()">ابد
+    <div id="start-screen">
+        <h1>🌟 أبطال الجمع 🌟</h1>
+        <p class="subtitle">مرحباً صديقاتي! اكتبوا اسمكم لنبدأ اللعب</p>
+        <div class="input-group">
+            <input type="text" id="player-name" placeholder="اكتبي اسمك هنا يا بطلة...">
+        </div>
+        <button class="btn btn-start" onclick="startGame()">ابدأ اللعب 🚀</button>
+    </div>
+
+    <!-- شاشة اللعب -->
+    <div id="game-screen" class="hidden">
+        <div class="stats">
+            <span>السؤال: <span id="q-number">1</span> / 10</span>
+            <span>النقاط: <span id="score">0</span> ⭐</span>
+        </div>
+
+        <div class="question-box" id="question-text">2 + 3 = ?</div>
+
+        <div class="options" id="options-container"></div>
+
+        <div class="feedback" id="feedback-msg"></div>
+    </div>
+
+    <!-- شاشة النهاية والشهادة -->
+    <div id="end-screen" class="hidden">
+        <div class="certificate">
+            <h2>🏆 شهادة شكر وتقدير 🏆</h2>
+            <p>تُمنح هذه الشهادة للبطلة المتميزة:</p>
+            <div class="student-name" id="cert-name">البطلة</div>
+            <p>لإتقانها مهارة الجمع وحصولها على <span id="final-score">10</span> من 10 في تحدي أبطال الجمع!</p>
+            <div class="teacher-sig">إشراف المعلمة: حياة البيشي 🌷</div>
+        </div>
+        <button class="btn" onclick="resetGame()">العب مرة أخرى 🔄</button>
+    </div>
+</div>
+
+<script>
+    // 1. تعريف الملفات الصوتية (تأكدي من تطابق أسماء الملفات في مجلد المشروع)
+    const sounds = {
+        welcome: new Audio('welcome.wav'),       // "مرحبا صديقاتي شرايكم نجرب نلعب مع يارا"
+        wrong: new Audio('wrong.wav'),           // "حاولي مرة ثانية انتي قدها والخطأ بداية النجاح"
+        correctList: [
+            new Audio('correct1.wav'),           // "يا سلام عليك يا شطورة"
+            new Audio('correct2.wav'),           // "الله عليك يا بطلة وش هالشطارة"
+            new Audio('correct3.wav'),           // "ما شاء الله عليك كل مرة تصيرين أشطر"
+            new Audio('correct4.wav')            // "كفو والله جبتيها صح"
+        ]
+    };
+
+    let currentQuestion = 1;
+    const totalQuestions = 10;
+    let score = 0;
+    let correctAnswer = 0;
+    let playerName = "";
+    let canAnswer = true;
+
+    // دالة لإيقاف أي صوت شغال قبل تشغيل الصوت الجديد حتى لا تتداخل الأصوات
+    function stopAllSounds() {
+        sounds.welcome.pause();
+        sounds.welcome.currentTime = 0;
+        sounds.wrong.pause();
+        sounds.wrong.currentTime = 0;
+        sounds.correctList.forEach(audio => {
+            audio.pause();
+            audio.currentTime = 0;
+        });
+    }
+
+    function playSound(audioObj) {
+        stopAllSounds();
+        audioObj.play().catch(e => console.log("تنبيه تشغيل الصوت:", e));
+    }
+
+    function startGame() {
+        const nameInput = document.getElementById('player-name').value.trim();
+        playerName = nameInput !== "" ? nameInput : "البطلة";
+
+        // تشغيل صوت الترحيب عند الضغط على ابدأ اللعب
+        playSound(sounds.welcome);
+
+        document.getElementById('start-screen').classList.add('hidden');
+        document.getElementById('game-screen').classList.remove('hidden');
+
+        currentQuestion = 1;
+        score = 0;
+        updateStats();
+        generateQuestion();
+    }
+
+    function generateQuestion() {
+        canAnswer = true;
+        document.getElementById('feedback-msg').textContent = "";
+
+        const num1 = Math.floor(Math.random() * 9) + 1;
+        const num2 = Math.floor(Math.random() * 9) + 1;
+        correctAnswer = num1 + num2;
+
+        document.getElementById('question-text').textContent = `${num1} + ${num2} = ?`;
+
+        let options = [correctAnswer];
+        while (options.length < 3) {
+            let wrong = correctAnswer + (Math.floor(Math.random() * 5) - 2);
+            if (wrong > 0 && !options.includes(wrong)) {
+                options.push(wrong);
+            }
+        }
+
+        // خلط الخيارات عشوائياً
+        options.sort(() => Math.random() - 0.5);
+
+        const optionsContainer = document.getElementById('options-container');
+        optionsContainer.innerHTML = "";
+
+        options.forEach(opt => {
+            const btn = document.createElement('button');
+            btn.className = 'option-btn';
+            btn.textContent = opt;
+            btn.onclick = () => checkAnswer(opt);
+            optionsContainer.appendChild(btn);
+        });
+    }
+
+    function checkAnswer(selected) {
+        if (!canAnswer) return;
+
+        const feedback = document.getElementById('feedback-msg');
+
+        if (selected === correctAnswer) {
+            canAnswer = false;
+            score++;
+            updateStats();
+            feedback.textContent = "أحسنتِ! إجابة صحيحة 🌟";
+            feedback.className = "feedback correct-text";
+
+            // اختيار صوت تشجيعي عشوائي من الأصوات الأربعة للإجابة الصحيحة
+            const randomIndex = Math.floor(Math.random() * sounds.correctList.length);
+            playSound(sounds.correctList[randomIndex]);
+
+            setTimeout(() => {
+                if (currentQuestion < totalQuestions) {
+                    currentQuestion++;
+                    updateStats();
+                    generateQuestion();
+                } else {
+                    endGame();
+                }
+            }, 2200); // مهلة لسماع الصوت قبل الانتقال للسؤال التالي
+        } else {
+            feedback.textContent = "حاولي مرة أخرى يا بطلة 💪";
+            feedback.className = "feedback wrong-text";
+
+            // تشغيل صوت التشجيع عند الخطأ
+            playSound(sounds.wrong);
+        }
+    }
+
+    function updateStats() {
+        document.getElementById('q-number').textContent = currentQuestion;
+        document.getElementById('score').textContent = score;
+    }
+
+    function endGame() {
+        document.getElementById('game-screen').classList.add('hidden');
+        document.getElementById('end-screen').classList.remove('hidden');
+
+        document.getElementById('cert-name').textContent = playerName;
+        document.getElementById('final-score').textContent = score;
+
+        // تشغيل صوت تشجيعي عند ظهور الشهادة
+        const randomIndex = Math.floor(Math.random() * sounds.correctList.length);
+        playSound(sounds.correctList[randomIndex]);
+    }
+
+    function resetGame() {
+        stopAllSounds();
+        document.getElementById('end-screen').classList.add('hidden');
+        document.getElementById('start-screen').classList.remove('hidden');
+    }
+</script>
+
+</body>
+</html>
